@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 東方Project 国内社团与个人音乐专辑一览</title>
+<style>
+:root{
+  --ink:#1f2137; --ink-soft:#4c4f6b; --muted:#8b8da3;
+  --paper:#f7f5f1; --card:#ffffff;
+  --gold:#c9a96a; --gold-soft:#e8dcc3;
+  --rose:#c96f8e; --indigo:#4d3a7a; --teal:#5b8a8b;
+  --line:#e8e3da;
+  --font-serif:"华文宋体","STSong","SimSun","Songti SC",serif;
+  --font-sans:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6}
+
+/* ============ 顶部 ============ */
+.hero{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;
+  background:linear-gradient(135deg,#1d1b3a 0%,#43376e 30%,#7a4d86 58%,#c46b8b 82%,#e9a27c 100%);}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(ellipse 60% 45% at 20% 15%,rgba(255,255,255,.10),transparent 60%),
+  radial-gradient(ellipse 45% 38% at 82% 78%,rgba(255,220,190,.14),transparent 55%);}
+.hero::after{content:"";position:absolute;inset:0;opacity:.16;background-image:
+  repeating-linear-gradient(90deg,transparent 0 78px,rgba(255,255,255,.35) 78px 79px),
+  repeating-linear-gradient(0deg,transparent 0 78px,rgba(255,255,255,.35) 78px 79px);}
+.hero-inner{position:relative;z-index:1;max-width:980px;padding:90px 32px}
+.hero-kicker{font-size:13px;letter-spacing:8px;color:var(--gold-soft);font-family:var(--font-serif);margin-bottom:28px;opacity:0}
+.hero h1{font-family:var(--font-serif);font-size:clamp(34px,5.6vw,64px);font-weight:600;letter-spacing:3px;line-height:1.35;opacity:0}
+.hero h1 small{display:block;font-size:.42em;letter-spacing:10px;color:rgba(255,255,255,.72);margin-top:20px;font-weight:400}
+.hero-divider{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:34px auto;opacity:0}
+.hero-sub{font-size:16px;letter-spacing:2px;color:rgba(255,255,255,.88);opacity:0}
+.hero-cta{display:inline-block;margin-top:44px;padding:14px 38px;border:1px solid rgba(255,255,255,.55);border-radius:40px;color:#fff;font-size:14px;letter-spacing:3px;text-decoration:none;opacity:0;transition:background .35s,transform .35s}
+.hero-cta:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:4px;color:rgba(255,255,255,.75)}
+.hero-scroll::after{content:"";display:block;width:1px;height:42px;margin:10px auto 0;background:linear-gradient(180deg,var(--gold-soft),transparent);animation:drop 2s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ============ 概览条 ============ */
+.bridge{position:relative;z-index:2;margin-top:-1px;background:var(--paper);padding:56px 24px 20px}
+.bridge-inner{max-width:1120px;margin:0 auto}
+.bridge-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 18px;text-align:center;box-shadow:0 6px 22px rgba(50,45,80,.05)}
+.stat b{display:block;font-family:var(--font-serif);font-size:30px;font-weight:600;background:linear-gradient(120deg,var(--indigo),var(--rose));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat span{display:block;margin-top:5px;font-size:12px;color:var(--muted);letter-spacing:2px}
+
+.zen-head{text-align:center;margin:64px auto 44px;max-width:640px;padding:0 24px}
+.zen-eyebrow{font-size:12px;letter-spacing:6px;color:var(--gold)}
+.zen-title{font-family:var(--font-serif);font-size:clamp(24px,3.4vw,34px);font-weight:600;margin-top:14px;letter-spacing:3px}
+.zen-line{width:56px;height:1px;margin:18px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.zen-desc{font-size:14px;color:var(--ink-soft);letter-spacing:1px}
+
+/* ============ 筛选器 ============ */
+.toolbar{position:sticky;top:0;z-index:30;background:rgba(247,245,241,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.toolbar-inner{max-width:1120px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.search{flex:1 1 240px;position:relative}
+.search input{width:100%;padding:10px 14px 10px 38px;border:1px solid var(--line);border-radius:10px;font-size:13px;background:#fff;color:var(--ink);outline:none;font-family:var(--font-sans)}
+.search input:focus{border-color:var(--gold)}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--muted)}
+.pill-groups{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.pills{display:flex;gap:5px;flex-wrap:wrap}
+.pill{border:1px solid var(--line);background:#fff;color:var(--ink-soft);border-radius:30px;padding:7px 14px;font-size:12px;cursor:pointer;transition:all .2s;font-family:var(--font-sans)}
+.pill:hover{border-color:var(--rose);color:var(--rose)}
+.pill.active{background:linear-gradient(120deg,var(--indigo),var(--rose));color:#fff;border-color:transparent;font-weight:500;box-shadow:0 4px 12px rgba(120,70,120,.22)}
+.sortwrap{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.sortwrap select{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 11px;font-size:12px;color:var(--ink);outline:none;cursor:pointer;font-family:var(--font-sans)}
+
+/* ============ 月份分布 ============ */
+.section{max-width:1120px;margin:0 auto;padding:26px 24px}
+.chart-wrap{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px 36px;box-shadow:0 10px 34px rgba(50,45,80,.05)}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:26px;flex-wrap:wrap;gap:8px}
+.chart-head h2{font-family:var(--font-serif);font-size:21px;font-weight:600;letter-spacing:2px}
+.chart-head span{font-size:12px;color:var(--muted)}
+.bars{display:flex;gap:18px;align-items:flex-end;min-height:150px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px}
+.bar-track{width:100%;max-width:96px;height:110px;background:#f3efe7;border-radius:10px 10px 0 0;display:flex;align-items:flex-end;overflow:hidden}
+.bar{width:100%;background:linear-gradient(180deg,var(--rose),var(--indigo));border-radius:10px 10px 0 0;transform-origin:bottom;transform:scaleY(0);transition:transform .8s cubic-bezier(.22,1,.36,1)}
+.bar-col.in .bar{transform:scaleY(1)}
+.bar-val{font-family:var(--font-serif);font-weight:600;color:var(--indigo)}
+.bar-lab{font-size:12px;color:var(--muted)}
+
+/* ============ 专辑网格 ============ */
+.album-grid{max-width:1120px;margin:0 auto;padding:8px 24px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px}
+.album{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 28px rgba(50,45,80,.06);transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s;opacity:0;transform:translateY(38px)}
+.album.reveal{opacity:1;transform:translateY(0)}
+.album:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(50,45,80,.13)}
+.cover-box{position:relative;aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,#ece6f2,#dfe6e4)}
+.cover-box img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.22,1,.36,1)}
+.album:hover .cover-box img{transform:scale(1.06)}
+.cover-fallback{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#43376e,#7a4d86,#c46b8b);color:rgba(255,255,255,.9)}
+.cover-fallback svg{width:38px;height:38px;opacity:.7}
+.cover-fallback small{font-size:12px;letter-spacing:2px}
+.album-no{position:absolute;top:14px;left:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.88);backdrop-filter:blur(4px);color:var(--indigo);font-family:var(--font-serif);font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.album-body{padding:20px 20px 22px}
+.album-title{font-family:var(--font-serif);font-size:19px;font-weight:600;line-height:1.45;letter-spacing:.5px}
+.album-circle{display:inline-block;margin-top:7px;font-size:13px;color:var(--rose);letter-spacing:1px}
+.album-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:5px;background:#f7f4ed;border:1px solid #ece6da;border-radius:8px;padding:4px 9px}
+.chip-label{font-size:10px;color:var(--muted)}
+.chip-val{font-size:12px;color:var(--indigo);font-weight:600}
+.album-review{margin-top:14px;font-size:13.5px;line-height:1.75;color:var(--ink-soft);text-align:justify}
+.album-links{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.alink{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:12px;font-weight:500;border-radius:9px;padding:8px 14px;transition:all .2s}
+.alink.bili{background:#f9eef2;color:#b75f7e;border:1px solid #f0d8e0}
+.alink.bili:hover{background:#f3dce4}
+.alink.dl{background:#eee9f5;color:var(--indigo);border:1px solid #ddd4ea}
+.alink.dl:hover{background:#e3dbf0}
+.alink.na{background:#f3f2f6;color:#b2b0bf;border:1px solid #e7e5ec;cursor:not-allowed}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
+
+/* ============ 页脚 ============ */
+.footer{margin-top:70px;padding:70px 24px 56px;background:linear-gradient(135deg,#1d1b3a,#43376e 55%,#7a4d86);color:rgba(255,255,255,.85);text-align:center;position:relative;overflow:hidden}
+.footer::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 40% at 50% 0%,rgba(255,255,255,.08),transparent 60%)}
+.footer-inner{position:relative;z-index:1}
+.footer-title{font-family:var(--font-serif);font-size:clamp(30px,5vw,52px);font-weight:600;letter-spacing:10px;color:#fff}
+.footer-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:26px auto}
+.footer-text{font-size:13px;letter-spacing:3px;color:rgba(255,255,255,.72);line-height:2}
+.footer-note{margin-top:26px;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.5)}
+
+/* ============ 动画 ============ */
+.reveal-base{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal-base.in{opacity:1;transform:none}
+.hero-anim.in{opacity:1;transition:opacity 1.1s ease}
+.hero-anim.d1{transition-delay:.15s}
+.hero-anim.d2{transition-delay:.4s}
+.hero-anim.d3{transition-delay:.65s}
+.hero-anim.d4{transition-delay:.9s}
+.hero-anim.d5{transition-delay:1.15s}
+
+@media (max-width:640px){
+  .hero{padding:0}
+  .toolbar{position:relative}
+  .sortwrap{margin-left:0;width:100%;justify-content:space-between}
+  .album-grid{padding:0 16px}
+  .bars{gap:8px}
+  .chart-wrap{padding:24px 20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,.album,.bar,.reveal-base,.hero-anim{transition:none!important;animation:none!important;opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker hero-anim d1">東方project · 国内同人音乐</div>
+    <h1 class="hero-anim d2">2026 东方Project<br>国内社团与个人音乐专辑一览<small>— DOUJIN MUSIC ARCHIVE —</small></h1>
+    <div class="hero-divider hero-anim d3"></div>
+    <p class="hero-sub hero-anim d4">夏夜幻想鄉 · 二十三部新作 · 等待被听见</p>
+    <a class="hero-cta hero-anim d5" href="#albums">开始浏览 ↓</a>
+  </div>
+  <span class="hero-scroll">SCROLL</span>
+</header>
+
+<section class="bridge">
+  <div class="bridge-inner">
+    <div class="bridge-stats reveal-base">
+      <div class="stat"><b>23</b><span>收录专辑</span></div>
+      <div class="stat"><b>20 张</b><span>实体发行</span></div>
+      <div class="stat"><b>19 个</b><span>社团 / 个人</span></div>
+      <div class="stat"><b>5·7 月</b><span>发布高峰</span></div>
+    </div>
+    <div class="zen-head reveal-base">
+      <div class="zen-eyebrow">GALLERY</div>
+      <h2 class="zen-title">浮世绘卷 · 专辑陈列</h2>
+      <div class="zen-line"></div>
+      <p class="zen-desc">一幅收录 2026 年国内东方同人音乐新作的浮世绘卷。可以依月份漫步，也可以循声细读。</p>
+    </div>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="q" type="search" placeholder="搜索专辑、社团或关键词…" aria-label="搜索">
+    </div>
+    <div class="pill-groups">
+      <div class="pills" id="monthPills"></div>
+      <div class="pills" id="typePills"></div>
+      <div class="sortwrap">
+        <label for="sort">排序</label>
+        <select id="sort">
+          <option value="no">序号</option>
+          <option value="month">发布月份</option>
+          <option value="price">价格</option>
+          <option value="circle">社团名称</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="albums" class="section">
+  <div class="chart-wrap reveal-base">
+    <div class="chart-head">
+      <h2>发布月份分布</h2>
+      <span>整体集中在初夏与盛夏</span>
+    </div>
+    <div class="bars" id="monthBars"></div>
+  </div>
+</section>
+
+<main class="album-grid" id="grid"></main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-title">有待更新……</div>
+    <div class="footer-line"></div>
+    <div class="footer-text">
+      <p>更多新作仍在路上 · 随时会为这份绘卷添上新的一笔</p>
+      <p style="font-size:12px;letter-spacing:4px;margin-top:10px">未完待续 · TO BE CONTINUED</p>
+    </div>
+    <div class="footer-note">资料来源：dizzylab 专辑页 · Bilibili XFD 试听 · 数据整理自公开信息</div>
+  </div>
+</footer>
+
+<script>
+const DATA = [
+  {
+    "no": "1",
+    "title": "诉我以梦 - In My Dream",
+    "circle": "琉净星云",
+    "songs": "10",
+    "tracks": "10",
+    "month": "7月",
+    "bili": "https://www.bilibili.com/video/BV1LLTu6zEgi",
+    "dl": "https://www.dizzylab.net/d/PNCD-0003/",
+    "physical": "有",
+    "sale": "7月",
+    "price": "67.9",
+    "review": "整张专辑的质量上乘，风格多样，同时包含了电子乐、弦乐、jazz等，对旋律的把握很好，以及在乐器和混音的呈现上都有相当精彩且亮眼的部分，作品方面的抓耳程度非常高。",
+    "img": "covers/PNCD-0003.jpg"
+  },
+  {
+    "no": "2",
+    "title": "ナヴィラの夜明け",
+    "circle": "疯帽子茶会",
+    "songs": "6",
+    "tracks": "11",
+    "month": "7月",
+    "bili": "https://www.bilibili.com/video/BV1QXTZ6qEwM",
+    "dl": "https://www.dizzylab.net/d/MhT-TH23/",
+    "physical": "有",
+    "sale": "7月",
+    "price": "70",
+    "review": "高质量民族乐专辑，整体编曲密度和信息量大，多种民族乐器的使用惟妙惟肖，二胡部分非常出彩且高水平，人声融合得很好，主唱实力在线，唱腔及功底优秀。",
+    "img": "covers/MhT-TH23.jpg"
+  },
+  {
+    "no": "3",
+    "title": "东方太嗨 -Touhou Toohigh Trance-",
+    "circle": "Sociable State",
+    "songs": "7",
+    "tracks": "11",
+    "month": "5月",
+    "bili": "https://www.bilibili.com/video/BV1tUDjBHEwU",
+    "dl": "https://www.dizzylab.net/d/SS-TH-004/",
+    "physical": "有",
+    "sale": "5月",
+    "price": "60",
+    "review": "很有意思的一张电子乐专辑，风格如其名，Trance为主，口味偏向于2010年前的那种感觉，有点那个极地大冲击的感觉，感觉人在livehouse里蹦，如果是喜欢这种风格的会忍不住嗨起来、飞起来……",
+    "img": "covers/SS-TH-004.jpg"
+  },
+  {
+    "no": "4",
+    "title": "Touhou Utopia Vol.5",
+    "circle": "もふ学園",
+    "songs": "11",
+    "tracks": "11",
+    "month": "7月",
+    "bili": "https://www.bilibili.com/video/BV17vN86bEGT",
+    "dl": "https://www.dizzylab.net/d/MOFU-008/",
+    "physical": "有",
+    "sale": "7月",
+    "price": "65",
+    "review": "由多位电子乐制作者联合制作的一张优秀的电子乐专辑，整体风格硬朗且劲爆，不论是hardcore还是trance写得都很有意思，每首单独拿出来都是不错的，适合电子乐爱好者收藏品鉴。",
+    "img": "covers/MOFU-008.jpg"
+  },
+  {
+    "no": "5",
+    "title": "冬日咏叙调",
+    "circle": "Static World",
+    "songs": "6",
+    "tracks": "6",
+    "month": "5月",
+    "bili": "https://www.bilibili.com/video/BV1sAZcBpEXF",
+    "dl": "https://www.dizzylab.net/d/SW20/",
+    "physical": "有",
+    "sale": "5月",
+    "price": "80",
+    "review": "民族风与治愈系完美融合的一张优秀的作品，专辑封面的⑨十分可爱，其实这张还是挺让人想到他们去年的那一作《冰空夏日葵》，也是延续了这种讨喜的风格，以及对于铃铛的使用一直都是他们的好球区。",
+    "img": "covers/SW20.jpg"
+  },
+  {
+    "no": "6",
+    "title": "付丧神传说",
+    "circle": "东方乐凌",
+    "songs": "10",
+    "tracks": "10",
+    "month": "7月",
+    "bili": "https://www.bilibili.com/video/BV1eWTo6BEuf",
+    "dl": "https://www.dizzylab.net/d/Lg-Tkmgm/",
+    "physical": "有",
+    "sale": "7月",
+    "price": "60",
+    "review": "非常令笔者感到惊奇的一部一人社团作品，相比去年的《寻梦豫章幻想》而言，在乐器的使用和编曲的技术上又有了不少的精进，第九乐章抓耳且大气，整体是很值得支持的交响乐改编作品，也很期待国内有更多的交响作品产生。",
+    "img": "covers/Lg-Tkmgm.jpg"
+  },
+  {
+    "no": "7",
+    "title": "Routine LP",
+    "circle": "月華社",
+    "songs": "7",
+    "tracks": "7",
+    "month": "4月",
+    "bili": "https://www.bilibili.com/video/BV1s49FBVEML",
+    "dl": "https://www.dizzylab.net/d/GKCD-012/",
+    "physical": "有",
+    "sale": "4月",
+    "price": "未知",
+    "review": "来自七位同人音乐社团的主催们一起共创的一张高质量的专辑，风格各异，水平很高，以电子音乐为主，但也有些会有高技术力的编曲和乐器的使用，风格和时代跨度都比较大，但爽感也同时具备。",
+    "img": "covers/GKCD-012.jpg"
+  },
+  {
+    "no": "8",
+    "title": "凤凰咆哮",
+    "circle": "幻想诗篇 Xanadu Canto",
+    "songs": "5",
+    "tracks": "5",
+    "month": "7月",
+    "bili": "https://www.bilibili.com/video/BV1QqTS61Ej5",
+    "dl": "https://www.dizzylab.net/d/XC-17/",
+    "physical": "有",
+    "sale": "7月",
+    "price": "60",
+    "review": "非常非常燃的一张专辑，整体改编得很有味道，核弹阿茶老师的二胡拉得太有感觉了，技术力超高，整体而言二胡同电吉他与架子鼓融合在一起，丝毫没有突兀的感觉，反而听感上乘，是一部民族乐和现代摇滚乐结合的优秀作品。",
+    "img": "covers/XC-17.jpg"
+  },
+  {
+    "no": "9",
+    "title": "Touhou Colours：Aquamarine",
+    "circle": "Chroma_Sounds虹彩",
+    "songs": "16",
+    "tracks": "16",
+    "month": "5月",
+    "bili": "https://www.bilibili.com/video/BV1gyoYBDE7k",
+    "dl": "https://www.dizzylab.net/d/THCL04A/",
+    "physical": "有",
+    "sale": "5月",
+    "price": "100",
+    "review": "经过了去年的Touhou Colours: Emerald的大获成功，深受国内外的大欢迎之后，大家对虹彩社团的了解可以说是上了一层楼，他们今年也是带来了两部相当优秀的colour bass和trance为主的专辑，技术力依旧超高，量大且管饱，封面和XFD设计都精良，十分值得一品。",
+    "img": "covers/THCL04A.jpg"
+  },
+  {
+    "no": "10",
+    "title": "Touhou Colours：Carnelian",
+    "circle": "Chroma_Sounds虹彩",
+    "songs": "16",
+    "tracks": "16",
+    "month": "5月",
+    "bili": "https://www.bilibili.com/video/BV1NE9tBpEKQ",
+    "dl": "https://www.dizzylab.net/d/THCL04B/",
+    "physical": "有",
+    "sale": "5月",
+    "price": "100",
+    "review": "经过了去年的Touhou Colours: Emerald的大获成功，深受国内外的大欢迎之后，大家对虹彩社团的了解可以说是上了一层楼，他们今年也是带来了两部相当优秀的colour bass和trance为主的专辑，技术力依旧超高，量大且管饱，封面和XFD设计都精良，十分值得一品。",
+    "img": "covers/THCL04B.jpg"
+  },
+  {
+    "no": "11",
+    "title": "彴约掠影 ~ Ten Nights of Dreams ~",
+    "circle": "SORRICOP",
+    "songs": "8",
+    "tracks": "8",
+    "month": "7月",
+    "bili": "https://www.bilibili.com/video/BV1rMNg6LEtj",
+    "dl": "https://www.dizzylab.net/d/SRCP04/",
+    "physical": "有",
+    "sale": "7月",
+    "price": "55",
+    "review": "国内算是难得一见的秘封专，上次看到应该是霜银纪元的《危楼记事》，本作由两位主唱进行演唱，风格以流行乐、jazz为主，其间也有一部交响作品，水平在线，值得进行支持。",
+    "img": "covers/SRCP04.jpg"
+  },
+  {
+    "no": "12",
+    "title": "negative_film",
+    "circle": "hisa_knowledge",
+    "songs": "6",
+    "tracks": "6",
+    "month": "5月",
+    "bili": "https://www.bilibili.com/video/BV16bZFB1EmN",
+    "dl": "https://www.dizzylab.net/d/KNOW-003/",
+    "physical": "有",
+    "sale": "5月",
+    "price": "50",
+    "review": "一张以颇多使用传统乐器的，整体叙事性很强且具备感染力的优秀的作品，本作品在一人作品里也是比较亮眼的，且这位作者有一种养成系的感觉，近两年一张张听下来这一张专辑的质量相比之前也是上了一个台阶。",
+    "img": "covers/KNOW-003.jpg"
+  },
+  {
+    "no": "13",
+    "title": "紅魔情傀~Puppa Scarlettiana",
+    "circle": "蜂幽音声",
+    "songs": "13",
+    "tracks": "13",
+    "month": "5月",
+    "bili": "https://www.bilibili.com/video/BV1MwdsBsEHM",
+    "dl": "https://www.dizzylab.net/d/ESM-TH-003/",
+    "physical": "有",
+    "sale": "5月",
+    "price": "78.8",
+    "review": "从整体风格设计再到音乐其本身而言，都相当具有哥特风格，编曲相当复杂，旋律抓耳且技术力高超，以电子乐为主，总体而言是比较劲爆或者说炸裂的，还有些金属的味道在，还是有很大一部分受众是会爱上这一口的，",
+    "img": "covers/ESM-TH-003.jpg"
+  },
+  {
+    "no": "14",
+    "title": "妖精舞会~Sprite's Ball",
+    "circle": "蜂幽音声",
+    "songs": "6",
+    "tracks": "6",
+    "month": "2月",
+    "bili": "https://www.bilibili.com/video/BV11bzpBuEBg",
+    "dl": "https://www.dizzylab.net/d/ESM-TH-002-5/",
+    "physical": "有",
+    "sale": "2月",
+    "price": "48.8",
+    "review": "不论是从XFD来看还是说从音乐本身而言，都很极地大冲击，很嗨，让人很诧异这是《红魔情傀》同社团作品，反差还是比较大的，总之是一部可以跳起来舞动起来的专辑。",
+    "img": "covers/ESM-TH-002-5.jpg"
+  },
+  {
+    "no": "15",
+    "title": "梦违旧世",
+    "circle": "饕餮盛宴",
+    "songs": "5",
+    "tracks": "5",
+    "month": "1月",
+    "bili": "无",
+    "dl": "https://www.dizzylab.net/d/Ttsy-Mwjs/",
+    "physical": "无",
+    "sale": "无",
+    "price": "5",
+    "review": "总体而言其实还算可圈可点，也是笔者在dizzylab里慢慢翻到的，可惜没有详细介绍，也不知道此社团更多的信息以及作者的情况如何，B站也没有相关推送和XFD视频，管弦写的还是可以的，混音可以精进一些，以及线上版本价格相当便宜。",
+    "img": "covers/Ttsy-Mwjs.jpg"
+  },
+  {
+    "no": "16",
+    "title": "繁响洄流",
+    "circle": "纯狐酱",
+    "songs": "10",
+    "tracks": "10",
+    "month": "5月",
+    "bili": "https://www.bilibili.com/video/BV1TC9yBgEHG",
+    "dl": "无",
+    "physical": "有",
+    "sale": "5月",
+    "price": "30~35",
+    "review": "很爽的一张个人爵士专辑，首登场与鄂高联，改编得很有意思，写得很让人安心，节奏感和让人摇摆起来的那种意味还是很舒服的，国人作品中的爵士和交响并不多见，期待有更多优秀的作者能够给我们带来这样的作品。",
+    "img": ""
+  },
+  {
+    "no": "17",
+    "title": "幻想乡迎来了许久后的百年",
+    "circle": "Ana_RYUU",
+    "songs": "8",
+    "tracks": "8",
+    "month": "7月",
+    "bili": "https://www.bilibili.com/video/BV1VdTj6sEBJ",
+    "dl": "无",
+    "physical": "有",
+    "sale": "未知",
+    "price": "未知",
+    "review": "整体而言是一部很具有其叙事性和意境的独特的作品，那种寂寥的氛围感很不错，作为首部专辑，ana桑已经做得很不错了，能够听出来一些很独特的设计感，但是在乐句的设计和混音上可以再打磨打磨。",
+    "img": ""
+  },
+  {
+    "no": "18",
+    "title": "一起分享旅途中的见闻吧",
+    "circle": "Ana_RYUU",
+    "songs": "6",
+    "tracks": "6",
+    "month": "7月",
+    "bili": "https://www.bilibili.com/video/BV181Nj65E9G",
+    "dl": "无",
+    "physical": "有",
+    "sale": "未知",
+    "price": "未知",
+    "review": "ana的第二部作品，距离上一部作品只隔了大约十日左右，还是比较高产的，混音和丰富度上可以再精进一步，作为新人音乐作者还是很值得期待以后的表现的。",
+    "img": ""
+  },
+  {
+    "no": "19",
+    "title": "EMOTIONA",
+    "circle": "THE FACTOTY OF SHEEP",
+    "songs": "8",
+    "tracks": "8",
+    "month": "5月",
+    "bili": "无",
+    "dl": "https://www.dizzylab.net/d/TFOS-SP01/",
+    "physical": "有",
+    "sale": "5月",
+    "price": "68",
+    "review": "整张专辑囊括了不同种类的风格，前面以比较情绪化和叙事性为主的，比较舒缓向的，而后面则有多种不捅风格化的remix等等，质量上乘，专辑设计也很好看，有一定的风格化。",
+    "img": "covers/TFOS-SP01.jpg"
+  },
+  {
+    "no": "20",
+    "title": "能工智人 Artistic Impossibility",
+    "circle": "THE FACTOTY OF SHEEP",
+    "songs": "4",
+    "tracks": "7",
+    "month": "7月",
+    "bili": "无",
+    "dl": "https://www.dizzylab.net/d/TFOS-06/",
+    "physical": "有",
+    "sale": "7月",
+    "price": "75",
+    "review": "这张以说唱为主的专辑在编曲上有一定的设计性，重编曲做得非常好，以及专辑同名歌曲的填词令人感到十分的印象深刻，对于人工智能大环境下的同人创作这样一种探讨是有其一定的深度蕴含在作品之中的，总体而言相当优秀。",
+    "img": "covers/TFOS-06.jpg"
+  },
+  {
+    "no": "21",
+    "title": "幻想蓬莱化Vol.3",
+    "circle": "探海堂",
+    "songs": "10",
+    "tracks": "10",
+    "month": "7月",
+    "bili": "https://www.bilibili.com/video/BV1Vvj86SEQx",
+    "dl": "https://www.dizzylab.net/d/HRCD03/",
+    "physical": "有",
+    "sale": "7月",
+    "price": "53",
+    "review": "本专是探海堂将原曲改编为蓬莱人形风格的第三部合集，整体风格的还原度依旧保持着高水准，丰富度也甚至是更上一层楼，非常适合喜欢原作风格的音乐爱好者们听赏。",
+    "img": "covers/HRCD03.jpg"
+  },
+  {
+    "no": "22",
+    "title": "離れないで",
+    "circle": "青綾星終着駅",
+    "songs": "2",
+    "tracks": "3",
+    "month": "7月",
+    "bili": "https://www.bilibili.com/video/BV12dg66pETU",
+    "dl": "https://www.dizzylab.net/d/CND-TH001/",
+    "physical": "无",
+    "sale": "无",
+    "price": "1",
+    "review": "作为单曲专，这首歌的改编是比较出色的，同时也是不可多得的秘封同人作品，整体情绪的渲染到位，有些感动，同时作为对灾情的应援作，展现了同人精神，且款项会进行捐助活动，可以在dizzylab上支持一下",
+    "img": "covers/CND-TH001.jpg"
+  },
+  {
+    "no": "23",
+    "title": "向着将要永远封冻的林籁庵，一起去吧。",
+    "circle": "未来史观2035",
+    "songs": "2",
+    "tracks": "2",
+    "month": "5月",
+    "bili": "无",
+    "dl": "https://www.dizzylab.net/d/BFUTHO03/",
+    "physical": "无",
+    "sale": "无",
+    "price": "暂无",
+    "review": "作为东方林籁庵3rd的无料发放后，暂无购买和获得的渠道，两首作品的改编都很有想法，也是以氛围感为主，风格独特，个人觉得还是比较抓耳的，同时地铁采样用得也很有意思。",
+    "img": "covers/BFUTHO03.jpg"
+  }
+];
+
+const monthPills = document.getElementById('monthPills');
+const typePills = document.getElementById('typePills');
+const sortSel = document.getElementById('sort');
+const qEl = document.getElementById('q');
+const grid = document.getElementById('grid');
+
+const months = ['1月','2月','4月','5月','7月'];
+let state = { q:'', month:'全部', type:'全部', sort:'no' };
+
+function pillRow(el, values, current, onClick){
+  el.innerHTML = values.map(v => `<button class="pill${v===current?' active':''}" data-v="${v}">${v}</button>`).join('');
+  el.querySelectorAll('.pill').forEach(b => b.addEventListener('click', () => {
+    values.forEach(v => { const p = el.querySelector(`[data-v="${v}"]`); if(p) p.classList.toggle('active', v === b.dataset.v); });
+    onClick(b.dataset.v);
+  }));
+}
+pillRow(monthPills, ['全部',...months], '全部', v => { state.month = v; render(); });
+pillRow(typePills, ['全部','实体','数字版'], '全部', v => { state.type = v; render(); });
+qEl.addEventListener('input', () => { state.q = qEl.value.trim().toLowerCase(); render(); });
+sortSel.addEventListener('change', () => { state.sort = sortSel.value; render(); });
+
+const priceNum = p => { const m = String(p).match(/\d+(?:\.\d+)?/); return m ? parseFloat(m[0]) : Infinity; };
+const priceLabel = p => { const m = String(p).match(/\d+(?:\.\d+)?/); return m ? '¥' + p : p; };
+const monthNum = m => ({'1月':1,'2月':2,'4月':4,'5月':5,'7月':7}[m] || 99);
+
+function matches(a){
+  if(state.month !== '全部' && a.month !== state.month) return false;
+  if(state.type !== '全部'){
+    const isPhys = a.physical === '有';
+    if(state.type === '实体' && !isPhys) return false;
+    if(state.type === '数字版' && isPhys) return false;
+  }
+  if(state.q){
+    const hay = (a.title + ' ' + a.circle + ' ' + a.review + ' ' + a.no + ' ' + a.img).toLowerCase();
+    if(!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+function sortData(list){
+  const copy = [...list];
+  const key = state.sort;
+  if(key === 'no') copy.sort((x,y) => parseInt(x.no) - parseInt(y.no));
+  if(key === 'month') copy.sort((x,y) => monthNum(x.month) - monthNum(y.month) || parseInt(x.no) - parseInt(y.no));
+  if(key === 'price') copy.sort((x,y) => priceNum(x.price) - priceNum(y.price) || parseInt(x.no) - parseInt(y.no));
+  if(key === 'circle') copy.sort((x,y) => x.circle.localeCompare(y.circle, 'zh'));
+  return copy;
+}
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function cardHTML(a){
+  const isPhys = a.physical === '有';
+  const bili = a.bili && a.bili !== '无';
+  const dl = a.dl && a.dl !== '无';
+  const cover = a.img
+    ? `<img src="${esc(a.img)}" alt="${esc(a.title)} 封面" loading="lazy">`
+    : `<div class="cover-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><small>无封面 · 待补充</small></div>`;
+  return `<article class="album">
+    <div class="cover-box"><span class="album-no">${esc(a.no)}</span>${cover}</div>
+    <div class="album-body">
+      <div class="album-title">${esc(a.title)}</div>
+      <span class="album-circle">${esc(a.circle)}</span>
+      <div class="album-chips">
+        <span class="chip"><span class="chip-label">发布</span><span class="chip-val">${esc(a.month)}</span></span>
+        <span class="chip"><span class="chip-label">价格</span><span class="chip-val">${esc(priceLabel(a.price))}</span></span>
+        <span class="chip"><span class="chip-label">实体</span><span class="chip-val">${isPhys?'有':'无'}</span></span>
+        <span class="chip"><span class="chip-label">曲目</span><span class="chip-val">${esc(a.songs)} 首</span></span>
+      </div>
+      <p class="album-review">${esc(a.review)}</p>
+      <div class="album-links">
+        ${bili ? `<a class="alink bili" href="${esc(a.bili)}" target="_blank" rel="noopener">▶ B站试听</a>` : '<span class="alink na">▶ 暂无试听</span>'}
+        ${dl ? `<a class="alink dl" href="${esc(a.dl)}" target="_blank" rel="noopener">♪ dizzylab</a>` : '<span class="alink na">♪ 暂无链接</span>'}
+      </div>
+    </div>
+  </article>`;
+}
+
+function render(){
+  const list = sortData(DATA.filter(matches));
+  if(!list.length){
+    grid.innerHTML = '<div class="empty">没有找到匹配的专辑，换个关键词试试吧 🌸</div>';
+    return;
+  }
+  grid.innerHTML = list.map(cardHTML).join('');
+  requestAnimationFrame(() => {
+    grid.querySelectorAll('.album').forEach(el => {
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(en => { if(en.isIntersecting){ el.classList.add('reveal'); ro.disconnect(); } });
+      }, { threshold:.12 });
+      ro.observe(el);
+    });
+  });
+}
+
+function renderChart(){
+  const counts = {};
+  months.forEach(m => counts[m] = 0);
+  DATA.forEach(a => { if(counts[a.month] !== undefined) counts[a.month]++; });
+  const max = Math.max(...Object.values(counts), 1);
+  document.getElementById('monthBars').innerHTML = months.map((m,i) => `
+    <div class="bar-col" style="transition-delay:${i*90}ms">
+      <span class="bar-val">${counts[m]}</span>
+      <div class="bar-track"><div class="bar" style="height:${Math.round(counts[m]/max*100)}%"></div></div>
+      <span class="bar-lab">${m}</span>
+    </div>`).join('');
+}
+
+function setupScrollAnimations(){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold:.15 });
+  document.querySelectorAll('.reveal-base').forEach(el => io.observe(el));
+  const heroIO = new IntersectionObserver(entries => {
+    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); heroIO.disconnect(); } });
+  }, { threshold:.2 });
+  document.querySelectorAll('.hero-anim').forEach(el => heroIO.observe(el));
+}
+
+renderChart();
+render();
+setupScrollAnimations();
+</script>
+</body>
+</html>
