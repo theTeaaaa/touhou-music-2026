@@ -50,10 +50,11 @@ body.light .px-grid{opacity:.2}
 .star{position:absolute;background:#fff;border-radius:50%;opacity:.8;animation:twinkle var(--tw,3s) ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:.95;transform:scale(1.15)}}
 body.light .star{background:#8a6b3f;opacity:.5}
-.pixel-cloud{position:absolute;opacity:.55;image-rendering:pixelated}
-.pixel-cloud.c1{left:4%;top:18%}
-.pixel-cloud.c2{right:16%;top:30%}
-.pixel-cloud.c3{left:26%;top:8%}
+.pixel-cloud{position:absolute;opacity:.55;image-rendering:pixelated;will-change:transform;animation:cloud-drift var(--cd,14s) ease-in-out infinite alternate}
+.pixel-cloud.c1{left:4%;top:18%;--cd:13s}
+.pixel-cloud.c2{right:16%;top:30%;--cd:17s}
+.pixel-cloud.c3{left:26%;top:8%;--cd:15s}
+@keyframes cloud-drift{from{transform:translateX(-6px)}to{transform:translateX(6px)}}
 body.light .pixel-cloud{opacity:.4}
 
 /* 流星 */
@@ -94,7 +95,7 @@ body.light .hero{color:#3a3352}
 .hero-inner{position:relative;z-index:2;max-width:980px;padding:90px 32px}
 .hero-torii{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:1;opacity:.8}
 .hero-torii svg{width:min(270px,40vw)}
-.hero-kicker{font-size:13px;letter-spacing:8px;color:var(--gold);font-family:var(--font-serif);margin-bottom:26px;opacity:0}
+.hero-kicker{font-size:18px;letter-spacing:7px;color:var(--gold);font-family:var(--font-serif);margin-bottom:26px;opacity:0}
 .hero h1{font-family:var(--font-serif);font-size:clamp(36px,6vw,68px);font-weight:600;letter-spacing:4px;line-height:1.32;opacity:0;text-shadow:0 3px 22px rgba(0,0,0,.4)}
 .hero h1 small{display:block;font-size:.4em;letter-spacing:12px;color:rgba(255,255,255,.62);margin-top:18px;font-weight:400}
 body.light .hero h1{text-shadow:none}
@@ -161,23 +162,24 @@ body.light .hero h1{text-shadow:none}
 .bar-val{font-family:var(--font-serif);font-weight:700;color:var(--gold)}
 .bar-lab{font-size:12px;color:var(--muted)}
 
-.month-split{grid-column:1/-1;display:flex;align-items:center;gap:16px;margin:26px 0 6px}
+.month-split{flex:0 0 100%;display:flex;align-items:center;gap:16px;margin:26px 0 6px}
 .month-split::before,.month-split::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .month-split b{font-family:var(--font-serif);font-size:19px;font-weight:700;color:var(--gold);letter-spacing:3px;white-space:nowrap}
 .month-split span{font-size:12px;color:var(--muted);letter-spacing:1px;white-space:nowrap}
 
 /* ============ 专辑卡片 ============ */
-.album-grid{max-width:1120px;margin:0 auto;padding:8px 24px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px}
-.album{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;backdrop-filter:blur(10px);box-shadow:0 10px 32px rgba(0,0,0,.24);transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s;opacity:0;transform:translateY(38px);display:flex;flex-direction:column}
+.album-grid{max-width:1120px;margin:0 auto;padding:8px 24px 0;display:flex;flex-wrap:wrap;justify-content:center;gap:26px}
+.album{position:relative;width:calc((100% - 52px)/3);min-width:300px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;backdrop-filter:blur(10px);box-shadow:0 10px 32px rgba(0,0,0,.24);transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s;opacity:0;transform:translateY(38px);display:flex;flex-direction:column}
 .album.reveal{opacity:1;transform:translateY(0)}
 .album:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.34)}
-.cover-box{position:relative;aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,#202a52,#31406e)}
+.cover-box{position:relative;aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,#202a52,#31406e);cursor:pointer}
+.cover-hint{position:absolute;right:10px;bottom:10px;z-index:2;padding:6px 11px;border-radius:30px;font-size:11px;letter-spacing:1px;color:#fff;background:rgba(8,13,34,.62);border:1px solid rgba(246,196,100,.45);opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s;pointer-events:none}
+.cover-box:hover .cover-hint{opacity:1;transform:translateY(0)}
 .cover-box img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.22,1,.36,1)}
 .album:hover .cover-box img{transform:scale(1.06)}
 .cover-fallback{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#1d2347,#3a2d62,#7a3d55);color:rgba(255,255,255,.9)}
 .cover-fallback svg{width:38px;height:38px;opacity:.7}
 .cover-fallback small{font-size:12px;letter-spacing:2px}
-.album-no{position:absolute;top:14px;left:14px;width:36px;height:36px;border-radius:50%;background:var(--vermilion);color:#fff;font-family:var(--font-serif);font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.35)}
 .album-body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
 .album-title{font-family:var(--font-serif);font-size:19px;font-weight:600;line-height:1.45;letter-spacing:.5px}
 .album-circle{display:inline-block;margin-top:7px;font-size:13px;color:var(--pink);letter-spacing:1px}
@@ -193,7 +195,7 @@ body.light .hero h1{text-shadow:none}
 .alink.dl{background:rgba(127,212,230,.12);color:var(--cyan);border:1px solid rgba(127,212,230,.34)}
 .alink.dl:hover{background:rgba(127,212,230,.24)}
 .alink.na{background:rgba(140,150,180,.10);color:var(--muted);border:1px solid var(--line);cursor:not-allowed}
-.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
+.empty{flex:0 0 100%;text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
 
 /* ============ 页脚 ============ */
 .footer{margin-top:70px;padding:72px 24px 60px;background:linear-gradient(180deg,transparent,rgba(6,10,28,.94));color:rgba(255,255,255,.85);text-align:center;position:relative;overflow:hidden;border-top:1px solid var(--line)}
@@ -216,6 +218,7 @@ body.light .footer-text{color:#6d5b40}
   .toolbar{position:relative}
   .sortwrap{margin-left:0;width:100%;justify-content:space-between}
   .album-grid{padding:0 16px}
+  .album{width:100%;min-width:0}
   .bars{gap:8px}
   .chart-wrap{padding:24px 18px}
   .float-ctrl{right:12px;top:12px}
@@ -224,6 +227,30 @@ body.light .footer-text{color:#6d5b40}
 @media (prefers-reduced-motion:reduce){
   *,.album,.bar,.reveal-base,.hero-anim,.star,.meteor{transition:none!important;animation:none!important;opacity:1!important;transform:none!important}
 }
+/* ===== 弹窗 ===== */
+.modal-overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(4,8,24,.72);backdrop-filter:blur(6px)}
+.modal-overlay.open{display:flex}
+.modal{position:relative;display:flex;gap:0;width:min(1080px,95vw);max-height:88vh;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 30px 80px rgba(0,0,0,.55);color:var(--ink)}
+.modal-close{position:absolute;top:16px;right:16px;z-index:3;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(8,13,34,.5);color:var(--ink-soft);font-size:22px;line-height:1;cursor:pointer}
+.modal-close:hover{color:#fff;background:var(--vermilion)}
+.modal-cover{flex:0 0 50%;width:50%;align-self:stretch;min-height:430px;overflow:hidden;background:linear-gradient(135deg,#202a52,#31406e)}
+.modal-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.modal-info{flex:0 0 50%;min-width:0;padding:34px 32px 30px;overflow:auto;display:flex;flex-direction:column}
+.modal-title{font-family:var(--font-serif);font-size:28px;font-weight:700;line-height:1.4;letter-spacing:.5px}
+.modal-circle{margin-top:7px;font-size:16px;color:var(--pink)}
+.modal-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.modal-chips .chip{padding:6px 13px}
+.modal-review{margin-top:18px;font-size:14px;line-height:1.85;color:var(--ink-soft);text-align:justify;overflow:auto}
+.modal-links{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.modal-links .alink{flex:0 0 auto;padding:11px 24px;font-size:14px}
+@media (max-width:640px){.modal{flex-direction:column;overflow:auto;border-radius:18px}.modal-cover{width:100%;flex:none;min-height:0;max-height:44vh}.modal-info{flex:1;padding:22px 20px 24px}}
+/* ===== 左侧月份定位条 ===== */
+.month-nav{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;gap:8px;padding:10px 8px;border-radius:18px;background:rgba(12,20,45,.55);border:1px solid var(--line);backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .3s}
+.month-nav.show{opacity:1;pointer-events:auto}
+.month-nav-item{min-width:40px;height:30px;border-radius:8px;font-size:12px;letter-spacing:1px;color:var(--ink-soft);text-align:center;line-height:30px;cursor:pointer;transition:background .2s,color .2s;user-select:none}
+.month-nav-item:hover{background:rgba(246,196,100,.16);color:#fff}
+.month-nav-item.active{background:linear-gradient(120deg,var(--vermilion),var(--pink));color:#fff;font-weight:600}
+@media (max-width:640px){.month-nav{left:6px;padding:8px 6px;gap:6px}.month-nav-item{min-width:34px;height:28px;line-height:28px;font-size:11px}}
 </style>
 </head>
 <body class="effects-on">
@@ -233,11 +260,8 @@ body.light .footer-text{color:#6d5b40}
 <div class="starfield" id="starfield"></div>
 
 <div class="float-ctrl">
-  <button class="icon-btn" id="themeBtn" title="切换昼夜" aria-label="切换昼夜">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
-  </button>
   <button class="icon-btn" id="fxBtn" title="开关流星特效" aria-label="开关流星特效">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 4 8.2 15.8M20 4l-5 1M20 4l-1 5"/><circle cx="5.5" cy="18.5" r="2.5"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.94 6.3 6.7.73-4.96 4.55 1.32 6.62L12 16.85 5.99 20.2l1.32-6.62L2.35 9.03l6.7-.73Z"/></svg>
   </button>
 </div>
 <button id="toTop" title="回到顶部" aria-label="回到顶部">
@@ -252,8 +276,8 @@ body.light .footer-text{color:#6d5b40}
     <div class="hero-kicker hero-anim d1">東方project · 国人同人音乐</div>
     <h1 class="hero-anim d2">2026 东方project<br>国人专辑一览<small>— CHINESE DOUJIN ALBUM ARCHIVE —</small></h1>
     <div class="hero-divider hero-anim d3"></div>
-    <p class="hero-sub hero-anim d4">今年共有 · <span class="count" id="albumCount">27</span>部新作 · 敬请欣赏</p>
-    <a class="hero-cta hero-anim d5" href="#albums">开始浏览 ↓</a>
+    <p class="hero-sub hero-anim d4">今年新作 · 共<span class="count" id="albumCount">27</span>部 · 敬请欣赏</p>
+    <a class="hero-cta hero-anim d5" href="#albums">开始浏览</a>
   </div>
   <div class="hero-scroll"><span>向下翻动</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/><path d="M6 15l6 6 6-6" opacity=".35"/></svg></div>
 </header>
@@ -261,7 +285,7 @@ body.light .footer-text{color:#6d5b40}
 <section class="bridge">
   <div class="bridge-inner">
     <div class="bridge-stats reveal-base">
-      <div class="stat"><b id="statTotal">27</b><span>收录专辑</span></div>
+      <div class="stat"><b id="statTotal">27 张</b><span>收录专辑</span></div>
       <div class="stat"><b id="statPhys">24 张</b><span>实体发行</span></div>
       <div class="stat"><b id="statCircle">22 个</b><span>社团 / 个人</span></div>
       <div class="stat"><b id="statMonth">8 月</b><span>发布高峰</span></div>
@@ -270,7 +294,7 @@ body.light .footer-text{color:#6d5b40}
       <div class="zen-eyebrow">AUTHOR'S NOTE</div>
       <h2 class="zen-title">作者的话</h2>
       <div class="zen-line"></div>
-      <p class="zen-desc">做了一点微小的工作，把今年出了的国人专辑做了一个汇总，标明了名称、社团、时间、价钱等，后续缺失的项目会询问和陆续补充，有空会再写一写简评，帮助大家有一个初步的认识，也便于学生党们在武t前能了解自己需要大约攒多少钱买碟。</p>
+      <p class="zen-desc">做了一点微小的工作，把今年出了的国人专辑做了一个汇总，标明了名称、社团、时间、价钱等，后续缺失的项目会询问和陆续补充，有空会再写一写简评，帮助大家有一个初步的认识，也便于学生党们在tho前能了解自己需要大约攒多少钱买碟。</p>
     </div>
   </div>
 </section>
@@ -288,7 +312,6 @@ body.light .footer-text{color:#6d5b40}
         <label for="sort">排序</label>
         <select id="sort">
           <option value="month" selected>发布月份</option>
-          <option value="no">序号</option>
           <option value="price">价格</option>
           <option value="circle">社团名称</option>
         </select>
@@ -301,7 +324,7 @@ body.light .footer-text{color:#6d5b40}
   <div class="chart-wrap reveal-base">
     <div class="chart-head">
       <h2>发布月份分布</h2>
-      <span>新增 8 月专辑后高峰继续延续</span>
+      <span id="chartNote">新增8月专辑</span>
     </div>
     <div class="bars" id="monthBars"></div>
   </div>
@@ -317,10 +340,26 @@ body.light .footer-text{color:#6d5b40}
       <p>更多新作仍在路上 · 随时会为这份绘卷添上新的一笔</p>
       <p style="font-size:12px;letter-spacing:4px;margin-top:10px">未完待续 · TO BE CONTINUED</p>
     </div>
-    <p class="footer-table-link"><a href="https://docs.qq.com/sheet/DWG95eHhTZGNpS0Rn?tab=BB08J2" target="_blank" rel="noopener">如果想要以表格形式查看，可点击此处 →</a></p>
+    <p class="footer-table-link"><a href="https://docs.qq.com/sheet/DWG95eHhTZGNpS0Rn?tab=BB08J2" target="_blank" rel="noopener">点击此处可查看在线汇总表格</a></p>
     <div class="footer-note">资料来源：dizzylab 专辑页 · Bilibili XFD 试听 · 数据整理自公开信息</div>
+    <div class="footer-note" style="margin-top:8px">感谢您的浏览，如有疑问可联系网站作者 QQ 2361988602</div>
   </div>
 </footer>
+
+<div id="modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal">
+    <button id="modalClose" class="modal-close" aria-label="关闭">×</button>
+    <div class="modal-cover" id="modalCover"></div>
+    <div class="modal-info">
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <span class="modal-circle" id="modalCircle"></span>
+      <div class="modal-chips" id="modalChips"></div>
+      <p class="modal-review" id="modalReview"></p>
+      <div class="modal-links" id="modalLinks"></div>
+    </div>
+  </div>
+</div>
+<nav id="monthNav" class="month-nav" aria-label="月份导航"></nav>
 
 <script>
 const DATA = [
@@ -577,7 +616,7 @@ const DATA = [
     "sale": "未知",
     "price": "未知",
     "review": "整体而言是一部很具有其叙事性和意境的独特的作品，那种寂寥的氛围感很不错，作为首部专辑，ana桑已经做得很不错了，能够听出来一些很独特的设计感，但是在乐句的设计和混音上可以再打磨打磨。",
-    "img": ""
+    "img": "covers/HuanxiangBainian.jpg"
   },
   {
     "no": "20",
@@ -592,7 +631,7 @@ const DATA = [
     "sale": "未知",
     "price": "未知",
     "review": "ana的第二部作品，距离上一部作品只隔了大约十日左右，还是比较高产的，混音和丰富度上可以再精进一步，作为新人音乐作者还是很值得期待以后的表现的。",
-    "img": ""
+    "img": "covers/LutuJianwen.jpg"
   },
   {
     "no": "11",
@@ -772,7 +811,6 @@ function matches(a){
 function sortData(list){
   const copy = [...list];
   const key = state.sort;
-  if(key === 'no') copy.sort((x,y) => parseInt(x.no) - parseInt(y.no));
   if(key === 'month') copy.sort((x,y) => monthNum(x.month) - monthNum(y.month) || parseInt(x.no) - parseInt(y.no));
   if(key === 'price') copy.sort((x,y) => priceNum(x.price) - priceNum(y.price) || parseInt(x.no) - parseInt(y.no));
   if(key === 'circle') copy.sort((x,y) => x.circle.localeCompare(y.circle, 'zh'));
@@ -788,7 +826,7 @@ function cardHTML(a){
     ? `<img src="${esc(a.img)}" alt="${esc(a.title)} 封面" loading="lazy">`
     : `<div class="cover-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><small>无封面 · 待补充</small></div>`;
   return `<article class="album">
-    <div class="cover-box"><span class="album-no">${esc(a.no)}</span>${cover}</div>
+    <div class="cover-box" data-album="${esc(JSON.stringify(a))}">${cover}<span class="cover-hint">点击查看</span></div>
     <div class="album-body">
       <div class="album-title">${esc(a.title)}</div>
       <span class="album-circle">${esc(a.circle)}</span>
@@ -800,8 +838,8 @@ function cardHTML(a){
       </div>
       <p class="album-review">${esc(a.review)}</p>
       <div class="album-links">
-        ${bili ? `<a class="alink bili" href="${esc(a.bili)}" target="_blank" rel="noopener">▶ B站试听</a>` : '<span class="alink na">▶ 暂无试听</span>'}
-        ${dl ? `<a class="alink dl" href="${esc(a.dl)}" target="_blank" rel="noopener">♪ dizzylab</a>` : '<span class="alink na">♪ 暂无链接</span>'}
+        ${bili ? `<a class="alink bili" href="${esc(a.bili)}" target="_blank" rel="noopener">▶ XFD</a>` : '<span class="alink na">▶ 暂无XFD</span>'}
+        ${dl ? `<a class="alink dl" href="${esc(a.dl)}" target="_blank" rel="noopener">♪ dizzylab</a>` : '<span class="alink na">♪ 暂无试听</span>'}
       </div>
     </div>
   </article>`;
@@ -848,6 +886,8 @@ function renderChart(){
       <div class="bar-track"><div class="bar" style="height:${Math.round(counts[m]/max*100)}%"></div></div>
       <span class="bar-lab">${m}</span>
     </div>`).join('');
+  const present = months.filter(m => counts[m] > 0);
+  document.getElementById('chartNote').textContent = '新增' + (present.length ? present[present.length-1] : '') + '专辑';
 }
 
 function setupScrollAnimations(){
@@ -904,16 +944,12 @@ function updateStats(){
   DATA.forEach(a=>{ if(counts[a.month]!==undefined)counts[a.month]++; });
   const peak = months.filter(m=>counts[m]===Math.max(...Object.values(counts)));
   document.getElementById('albumCount').textContent = total;
-  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statTotal').textContent = total + ' 张';
   document.getElementById('statPhys').textContent = phys + ' 张';
   document.getElementById('statCircle').textContent = circles + ' 个';
   document.getElementById('statMonth').textContent = peak.join('·');
 }
 
-// 昼夜切换
-document.getElementById('themeBtn').addEventListener('click', () => {
-  document.body.classList.toggle('light');
-});
 // 流星开关
 document.getElementById('fxBtn').addEventListener('click', () => {
   document.body.classList.toggle('effects-off');
@@ -921,6 +957,7 @@ document.getElementById('fxBtn').addEventListener('click', () => {
 // 回到顶部
 const toTop = document.getElementById('toTop');
 window.addEventListener('scroll', () => {
+  updateMonthNav();
   toTop.classList.toggle('show', window.scrollY > 600);
   const hero = document.querySelector('.hero');
   const ratio = window.scrollY / (hero.offsetHeight || 1);
@@ -928,8 +965,86 @@ window.addEventListener('scroll', () => {
 });
 toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
+// 封面弹窗
+const modal = document.getElementById('modal');
+function openModal(a){
+  const isPhys = a.physical === '有';
+  const bili = a.bili && a.bili !== '无';
+  const dl = a.dl && a.dl !== '无';
+  const cover = a.img
+    ? `<img src="${esc(a.img)}" alt="${esc(a.title)} 封面">`
+    : '<div class="cover-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><small>无封面 · 待补充</small></div>';
+  modal.querySelector('#modalCover').innerHTML = cover;
+  modal.querySelector('#modalTitle').textContent = a.title;
+  modal.querySelector('#modalCircle').textContent = a.circle;
+  modal.querySelector('#modalChips').innerHTML = `
+    <span class="chip"><span class="chip-label">发布</span><span class="chip-val">${esc(a.month)}</span></span>
+    <span class="chip"><span class="chip-label">价格</span><span class="chip-val">${esc(priceLabel(a.price))}</span></span>
+    <span class="chip"><span class="chip-label">实体</span><span class="chip-val">${isPhys?'有':'无'}</span></span>
+    <span class="chip"><span class="chip-label">歌曲</span><span class="chip-val">${esc(a.songs)} 首</span></span>
+    <span class="chip"><span class="chip-label">音轨</span><span class="chip-val">${esc(a.tracks)} 首</span></span>
+    <span class="chip"><span class="chip-label">实体发售</span><span class="chip-val">${esc(a.sale || a.month)}</span></span>`;
+  modal.querySelector('#modalReview').textContent = a.review;
+  modal.querySelector('#modalLinks').innerHTML = `
+    ${bili ? `<a class="alink bili" href="${esc(a.bili)}" target="_blank" rel="noopener">▶ XFD</a>` : '<span class="alink na">▶ 暂无XFD</span>'}
+    ${dl ? `<a class="alink dl" href="${esc(a.dl)}" target="_blank" rel="noopener">♪ dizzylab</a>` : '<span class="alink na">♪ 暂无试听</span>'}`;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('grid').addEventListener('click', e => {
+  const box = e.target.closest('.cover-box');
+  if(box && box.dataset.album){ try { openModal(JSON.parse(box.dataset.album)); } catch(_){} }
+});
+modal.addEventListener('click', e => { if(e.target.id === 'modal' || e.target.id === 'modalClose') closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+// 左侧月份定位条
+const monthNav = document.getElementById('monthNav');
+const monthNavItems = {};
+function buildMonthNav(){
+  const counts = {};
+  months.forEach(m => counts[m] = 0);
+  DATA.forEach(a => { if(counts[a.month] !== undefined) counts[a.month]++; });
+  const present = months.filter(m => counts[m] > 0);
+  monthNav.innerHTML = present.map(m => `<span class="month-nav-item" data-m="${m}">${m}</span>`).join('');
+  monthNav.querySelectorAll('.month-nav-item').forEach(el => {
+    monthNavItems[el.dataset.m] = el;
+    el.addEventListener('click', () => jumpToMonth(el.dataset.m));
+  });
+  updateMonthNav();
+}
+function jumpToMonth(m){
+  const target = [...document.querySelectorAll('.month-split')].find(s => s.querySelector('b').textContent.trim() === m);
+  if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+  else {
+    const pill = [...document.querySelectorAll('#monthPills .pill')].find(p => p.textContent.trim() === m);
+    if(pill) pill.click();
+    document.getElementById('grid').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+function updateMonthNav(){
+  const top = window.scrollY + window.innerHeight * 0.4;
+  let active = '';
+  document.querySelectorAll('.month-split').forEach(s => {
+    const y = s.getBoundingClientRect().top + window.scrollY;
+    if(y <= top) active = s.querySelector('b').textContent.trim();
+  });
+  Object.entries(monthNavItems).forEach(([m, el]) => el.classList.toggle('active', m === active));
+}
+// 柱状图点击跳转对应月份
+document.getElementById('monthBars').addEventListener('click', e => {
+  const col = e.target.closest('.bar-col');
+  if(col && col.dataset.m) jumpToMonth(col.dataset.m);
+});
+// 滚动到专辑列表时显示/隐藏定位条
+new IntersectionObserver(entries => {
+  entries.forEach(en => monthNav.classList.toggle('show', en.isIntersecting));
+}, { threshold: 0.02 }).observe(document.getElementById('grid'));
+
 renderChart();
 render();
+buildMonthNav();
 setupScrollAnimations();
 buildSky();
 updateStats();
