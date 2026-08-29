@@ -822,8 +822,9 @@ function cardHTML(a){
   const isPhys = a.physical === '有';
   const bili = a.bili && a.bili !== '无';
   const dl = a.dl && a.dl !== '无';
+  const thumbSrc = a.img ? ('covers/thumbs/' + a.img.split('/').pop()) : '';
   const cover = a.img
-    ? `<img src="${esc(a.img)}" alt="${esc(a.title)} 封面" loading="lazy">`
+    ? `<img src="${esc(thumbSrc)}" alt="${esc(a.title)} 封面" loading="lazy">`
     : `<div class="cover-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><small>无封面 · 待补充</small></div>`;
   return `<article class="album">
     <div class="cover-box" data-album="${esc(JSON.stringify(a))}">${cover}<span class="cover-hint">点击查看</span></div>
