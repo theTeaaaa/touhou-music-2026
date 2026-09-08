@@ -103,9 +103,9 @@ body.light .hero h1{text-shadow:none}
 .hero-sub{font-size:17px;letter-spacing:2px;color:var(--ink-soft);opacity:0}
 .hero-sub .count{display:inline-flex;align-items:baseline;margin:0 4px;font-family:var(--font-serif);
   font-size:2.35em;font-weight:700;line-height:1;letter-spacing:2px;
-  background:linear-gradient(120deg,var(--gold) 5%,var(--vermilion) 55%,var(--pink) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 3px 10px rgba(0,0,0,.28));animation:count-pop 1.2s .65s both}
+  background:none;color:#ffe08a;-webkit-text-fill-color:#ffe08a;
+  text-shadow:0 0 18px rgba(255,214,120,.75),0 2px 8px rgba(0,0,0,.35);
+  filter:none;animation:count-pop 1.2s .65s both}
 @keyframes count-pop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
 .hero-cta{display:inline-block;margin-top:42px;padding:14px 44px;border:1px solid rgba(255,255,255,.5);border-radius:40px;color:inherit;
   font-size:14px;letter-spacing:4px;text-decoration:none;opacity:0;transition:all .35s;backdrop-filter:blur(4px)}
@@ -251,6 +251,160 @@ body.light .footer-text{color:#6d5b40}
 .month-nav-item:hover{background:rgba(246,196,100,.16);color:#fff}
 .month-nav-item.active{background:linear-gradient(120deg,var(--vermilion),var(--pink));color:#fff;font-weight:600}
 @media (max-width:640px){.month-nav{left:6px;padding:8px 6px;gap:6px}.month-nav-item{min-width:34px;height:28px;line-height:28px;font-size:11px}}
+
+/* ===== 2026 design refresh (local) ===== */
+:root{
+  --glow:rgba(246,196,100,.22);
+  --spine:linear-gradient(180deg,var(--gold),var(--vermilion));
+}
+.night-bg::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.07;
+  background-image:radial-gradient(rgba(255,255,255,.55) .6px, transparent .7px);
+  background-size:3px 3px;
+}
+body.light .night-bg::after{opacity:.05}
+
+.hero-moon{
+  position:absolute;left:50%;top:44%;width:min(540px,78vw);height:min(540px,78vw);
+  transform:translate(-50%,-58%);border-radius:50%;z-index:0;pointer-events:none;
+  background:radial-gradient(circle at 42% 38%,rgba(255,248,230,.92) 0%,rgba(246,196,100,.32) 26%,rgba(246,196,100,.08) 52%,transparent 70%);
+  box-shadow:0 0 90px 18px rgba(246,196,100,.12);
+}
+body.light .hero-moon{
+  background:radial-gradient(circle at 42% 38%,rgba(255,252,235,.95) 0%,rgba(255,210,140,.42) 30%,rgba(232,168,90,.12) 58%,transparent 72%);
+  box-shadow:0 0 70px 10px rgba(255,210,140,.18);
+}
+.hero-torii{filter:drop-shadow(0 10px 24px rgba(228,100,77,.28))}
+.hero-accent{
+  background:linear-gradient(120deg,var(--gold) 6%,#fff6d8 46%,var(--vermilion) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+body.light .hero-accent{
+  background:linear-gradient(120deg,var(--gold),var(--vermilion));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:42px}
+.hero-cta{margin-top:0}
+.hero-cta.ghost{background:transparent;border-color:rgba(255,255,255,.28);color:var(--ink-soft)}
+.hero-cta.ghost:hover{background:rgba(255,255,255,.08);border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+body.light .hero-cta.ghost{border-color:rgba(80,60,30,.28);color:var(--ink-soft)}
+
+.icon-sun,.icon-moon{width:20px;height:20px}
+body.light .icon-moon{display:none}
+body:not(.light) .icon-sun{display:none}
+
+.stat{position:relative;overflow:hidden}
+.stat::after{
+  content:"";position:absolute;inset:auto -20% -40% auto;width:90px;height:90px;border-radius:50%;
+  background:radial-gradient(circle,var(--glow),transparent 70%);pointer-events:none;
+}
+.zen-head{max-width:720px}
+
+.toolbar{top:10px;margin:0 16px;border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--paper) 78%,transparent)}
+.toolbar-inner{max-width:1180px;flex-direction:column;align-items:stretch;gap:8px;padding:10px 18px 12px}
+.toolbar-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.toolbar-meta{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted);letter-spacing:.5px;padding:0 2px}
+.toolbar-meta b{color:var(--gold);font-family:var(--font-serif);font-size:14px;font-weight:700}
+.clear-filter{border:0;background:transparent;color:var(--pink);cursor:pointer;font-size:12px;letter-spacing:1px;padding:0}
+.clear-filter:hover{text-decoration:underline}
+.pill:focus-visible,.icon-btn:focus-visible,.hero-cta:focus-visible,.alink:focus-visible,select:focus-visible,input:focus-visible{
+  outline:2px solid var(--gold);outline-offset:2px
+}
+
+.chart-wrap{position:relative}
+.bar-col{cursor:pointer}
+.bar-col:hover .bar{filter:brightness(1.12)}
+.bar-col:hover .bar-lab{color:var(--gold)}
+
+.album-grid{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:28px;
+  max-width:1180px;
+  justify-content:stretch;
+}
+.album{width:auto !important;min-width:0;border-radius:22px}
+.album::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;z-index:2;
+  background:var(--spine);
+}
+.album:hover{transform:translateY(-7px);box-shadow:0 22px 54px rgba(0,0,0,.38),0 0 0 1px rgba(246,196,100,.28)}
+.month-split,.empty{grid-column:1 / -1;flex:unset;scroll-margin-top:96px}
+.album-no,.album-flag{
+  position:absolute;z-index:2;top:12px;padding:4px 10px;border-radius:999px;
+  font-size:11px;letter-spacing:1px;color:#fff;backdrop-filter:blur(8px)
+}
+.album-no{
+  left:14px;font-family:var(--font-serif);font-size:12px;
+  background:rgba(8,13,34,.62);border:1px solid rgba(246,196,100,.45)
+}
+.album-flag{right:12px}
+.album-flag.phys{background:linear-gradient(120deg,var(--vermilion),var(--pink))}
+.album-flag.digi{background:rgba(20,40,70,.55);border:1px solid rgba(127,212,230,.45);color:#d7f4fb}
+.album-review{
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+}
+.cover-box{cursor:pointer}
+.album{cursor:pointer}
+
+.modal{border-radius:26px}
+.modal-kicker{font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:6px}
+.modal-cover{background:#070b1c;display:flex;align-items:center;justify-content:center}
+.modal-cover img{object-fit:contain;max-height:88vh}
+.modal-info{background:linear-gradient(180deg,rgba(255,255,255,.03),transparent)}
+
+.month-nav-item{position:relative}
+.month-nav-item em{
+  display:block;font-style:normal;font-size:10px;line-height:1;margin-top:-2px;color:var(--muted)
+}
+.month-nav-item.active em{color:rgba(255,255,255,.86)}
+
+@media (max-width:640px){
+  .toolbar{margin:0;top:0;border-radius:0}
+  .hero-actions{margin-top:28px}
+  .album-no{left:12px}
+}
+
+
+.hero-actions .hero-cta{opacity:1}
+.hero-sub{color:#eef3ff;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+body.light .hero-sub{color:var(--ink-soft);text-shadow:none}
+.hero-moon{top:34%;opacity:.48;width:min(420px,62vw);height:min(420px,62vw)}
+.hero-sub{color:#f7faff;font-weight:500;text-shadow:0 2px 6px #070d24,0 10px 28px #070d24}
+.hero-actions{margin-top:28px}
+.toolbar{top:0;margin:0;border-radius:0;border-left:none;border-right:none}
+.pill-label{font-size:11px;color:var(--muted);letter-spacing:1px;margin:0 2px 0 4px;white-space:nowrap}
+.month-nav-item{display:flex;align-items:baseline;justify-content:center;gap:4px;height:auto;min-width:52px;padding:6px 8px;line-height:1.1}
+.month-nav-item em{display:inline;margin:0;font-size:10px}
+.album-grid{padding-top:18px}
+
+
+.hero-moon{display:none !important}
+.pixel-cloud{opacity:.78;image-rendering:pixelated}
+.pixel-cloud svg{display:block}
+.month-nav-item{min-width:58px}
+.price-mode-btn{
+  margin-left:8px;border:1px solid var(--line);background:var(--card);color:var(--gold);
+  border-radius:999px;padding:4px 12px;font-size:12px;letter-spacing:1px;cursor:pointer;font-family:var(--font-sans)
+}
+.price-mode-btn:hover{border-color:var(--gold)}
+.price-mode-btn.on{background:linear-gradient(120deg,var(--vermilion),var(--pink));color:#fff;border-color:transparent}
+.picked-meta{margin-left:8px}
+.pick-mark{
+  display:none;position:absolute;left:12px;top:12px;z-index:3;width:22px;height:22px;border-radius:6px;
+  border:1.5px solid rgba(255,255,255,.7);background:rgba(8,13,34,.45)
+}
+body.pricing-on .pick-mark{display:block}
+body.pricing-on .cover-hint{display:none}
+body.pricing-on .album{cursor:pointer}
+.album.picked{box-shadow:0 0 0 2px var(--gold),0 18px 44px rgba(0,0,0,.36)}
+.album.picked .pick-mark{
+  background:linear-gradient(120deg,var(--gold),var(--vermilion));border-color:transparent
+}
+.album.picked .pick-mark::after{
+  content:"";position:absolute;left:6px;top:3px;width:7px;height:12px;border:2px solid #fff;border-top:0;border-left:0;transform:rotate(40deg)
+}
+
 </style>
 </head>
 <body class="effects-on">
@@ -274,10 +428,13 @@ body.light .footer-text{color:#6d5b40}
   </div>
   <div class="hero-inner">
     <div class="hero-kicker hero-anim d1">東方project · 国人同人音乐</div>
-    <h1 class="hero-anim d2">2026 东方project<br>国人专辑一览<small>— CHINESE DOUJIN ALBUM ARCHIVE —</small></h1>
+    <h1 class="hero-anim d2">2026 东方project<br><span class="hero-accent">国人专辑一览</span><small>— CHINESE DOUJIN ALBUM ARCHIVE —</small></h1>
     <div class="hero-divider hero-anim d3"></div>
     <p class="hero-sub hero-anim d4">今年新作 · 共<span class="count" id="albumCount">27</span>部 · 敬请欣赏</p>
-    <a class="hero-cta hero-anim d5" href="#albums">开始浏览</a>
+    <div class="hero-actions hero-anim d5">
+      <a class="hero-cta" href="#albums">开始浏览</a>
+      <a class="hero-cta ghost" href="#note">作者的话</a>
+    </div>
   </div>
   <div class="hero-scroll"><span>向下翻动</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/><path d="M6 15l6 6 6-6" opacity=".35"/></svg></div>
 </header>
@@ -289,8 +446,9 @@ body.light .footer-text{color:#6d5b40}
       <div class="stat"><b id="statPhys">24 张</b><span>实体发行</span></div>
       <div class="stat"><b id="statCircle">22 个</b><span>社团 / 个人</span></div>
       <div class="stat"><b id="statMonth">8 月</b><span>发布高峰</span></div>
+      <div class="stat"><b id="statBudget">—</b><span>实体合计</span></div>
     </div>
-    <div class="zen-head reveal-base">
+    <div class="zen-head reveal-base" id="note">
       <div class="zen-eyebrow">AUTHOR'S NOTE</div>
       <h2 class="zen-title">作者的话</h2>
       <div class="zen-line"></div>
@@ -301,22 +459,27 @@ body.light .footer-text{color:#6d5b40}
 
 <div class="toolbar">
   <div class="toolbar-inner">
-    <div class="search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input id="q" type="search" placeholder="搜索专辑、社团或关键词…" aria-label="搜索">
-    </div>
-    <div class="pill-groups">
-      <div class="pills" id="monthPills"></div>
-      <div class="pills" id="typePills"></div>
-      <div class="sortwrap">
-        <label for="sort">排序</label>
-        <select id="sort">
-          <option value="month" selected>发布月份</option>
-          <option value="price">价格</option>
-          <option value="circle">社团名称</option>
-        </select>
+    <div class="toolbar-row">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="q" type="search" placeholder="搜索专辑、社团或关键词…" aria-label="搜索">
+      </div>
+      <div class="pill-groups">
+        <span class="pill-label">月份</span>
+        <div class="pills" id="monthPills"></div>
+        <span class="pill-label">介质</span>
+        <div class="pills" id="typePills"></div>
+        <div class="sortwrap">
+          <label for="sort">排序</label>
+          <select id="sort">
+            <option value="month" selected>发布月份</option>
+            <option value="price">价格</option>
+            <option value="circle">社团名称</option>
+          </select>
+        </div>
       </div>
     </div>
+    <div class="toolbar-meta" id="resultMeta">显示 <b>27</b> 张</div>
   </div>
 </div>
 
@@ -324,7 +487,7 @@ body.light .footer-text{color:#6d5b40}
   <div class="chart-wrap reveal-base">
     <div class="chart-head">
       <h2>发布月份分布</h2>
-      <span id="chartNote">新增8月专辑</span>
+      <span id="chartNote">点击柱状图可跳到对应月份</span>
     </div>
     <div class="bars" id="monthBars"></div>
   </div>
@@ -351,6 +514,7 @@ body.light .footer-text{color:#6d5b40}
     <button id="modalClose" class="modal-close" aria-label="关闭">×</button>
     <div class="modal-cover" id="modalCover"></div>
     <div class="modal-info">
+      <div class="modal-kicker" id="modalKicker"></div>
       <h2 class="modal-title" id="modalTitle"></h2>
       <span class="modal-circle" id="modalCircle"></span>
       <div class="modal-chips" id="modalChips"></div>
@@ -826,15 +990,14 @@ function cardHTML(a){
   const cover = a.img
     ? `<img src="${esc(thumbSrc)}" alt="${esc(a.title)} 封面" loading="lazy">`
     : `<div class="cover-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><small>无封面 · 待补充</small></div>`;
-  return `<article class="album">
-    <div class="cover-box" data-album="${esc(JSON.stringify(a))}">${cover}<span class="cover-hint">点击查看</span></div>
+  return `<article class="album" data-album="${esc(JSON.stringify(a))}">
+    <div class="cover-box">${cover}<span class="album-flag ${isPhys?'phys':'digi'}">${isPhys?'实体':'数字'}</span><span class="pick-mark" aria-hidden="true"></span><span class="cover-hint">查看详情</span></div>
     <div class="album-body">
       <div class="album-title">${esc(a.title)}</div>
       <span class="album-circle">${esc(a.circle)}</span>
       <div class="album-chips">
         <span class="chip"><span class="chip-label">发布</span><span class="chip-val">${esc(a.month)}</span></span>
         <span class="chip"><span class="chip-label">价格</span><span class="chip-val">${esc(priceLabel(a.price))}</span></span>
-        <span class="chip"><span class="chip-label">实体</span><span class="chip-val">${isPhys?'有':'无'}</span></span>
         <span class="chip"><span class="chip-label">曲目</span><span class="chip-val">${esc(a.songs)} 首</span></span>
       </div>
       <p class="album-review">${esc(a.review)}</p>
@@ -849,7 +1012,8 @@ function cardHTML(a){
 function render(){
   const list = sortData(DATA.filter(matches));
   if(!list.length){
-    grid.innerHTML = '<div class="empty">没有找到匹配的专辑，换个关键词试试吧 🌸</div>';
+    grid.innerHTML = '<div class="empty">没有找到匹配的专辑，换个关键词试试吧 🌸<button class="clear-filter" id="clearFilter">清空筛选</button></div>';
+    updateResultMeta([]);
     return;
   }
   if(state.sort === 'month'){
@@ -866,8 +1030,10 @@ function render(){
   } else {
     grid.innerHTML = list.map(cardHTML).join('');
   }
+  updateResultMeta(list);
   requestAnimationFrame(() => {
     grid.querySelectorAll('.album').forEach(el => {
+      try { const a = JSON.parse(el.dataset.album); if(picked.has(albumKey(a))) el.classList.add('picked'); } catch(_){}
       const ro = new IntersectionObserver(entries => {
         entries.forEach(en => { if(en.isIntersecting){ el.classList.add('reveal'); ro.disconnect(); } });
       }, { threshold:.12 });
@@ -888,7 +1054,7 @@ function renderChart(){
       <span class="bar-lab">${m}</span>
     </div>`).join('');
   const present = months.filter(m => counts[m] > 0);
-  document.getElementById('chartNote').textContent = '新增' + (present.length ? present[present.length-1] : '') + '专辑';
+  document.getElementById('chartNote').textContent = (present.length ? present[present.length-1] : '') + ' 最新 · 点击柱状图跳转';
 }
 
 function setupScrollAnimations(){
@@ -919,9 +1085,15 @@ function buildSky(){
     starHtml.push(`<span class="star" style="left:${x}%;top:${y}%;width:${size}px;height:${size}px;--tw:${tw}s;animation-delay:${delay}s"></span>`);
   }
   // 像素云
-  const cloud1 = `<div class="pixel-cloud c1" style="filter:brightness(1.1)"><svg width="120" height="40" shape-rendering="crispEdges"><g fill="rgba(150,170,220,.35)"><rect x="18" y="14" width="10" height="10"/><rect x="28" y="8" width="10" height="12"/><rect x="38" y="14" width="26" height="8"/><rect x="64" y="8" width="10" height="12"/><rect x="74" y="14" width="20" height="10"/><rect x="28" y="20" width="10" height="6"/><rect x="64" y="20" width="10" height="6"/></g></svg></div>`;
-  const cloud2 = `<div class="pixel-cloud c2" style="filter:brightness(1.05)"><svg width="150" height="46" shape-rendering="crispEdges"><g fill="rgba(130,150,210,.30)"><rect x="12" y="18" width="12" height="10"/><rect x="24" y="10" width="12" height="12"/><rect x="36" y="18" width="34" height="10"/><rect x="70" y="10" width="12" height="12"/><rect x="82" y="18" width="26" height="12"/><rect x="108" y="14" width="12" height="10"/><rect x="24" y="26" width="12" height="6"/><rect x="70" y="26" width="12" height="6"/></g></svg></div>`;
-  const cloud3 = `<div class="pixel-cloud c3" style="filter:brightness(1.12)"><svg width="90" height="34" shape-rendering="crispEdges"><g fill="rgba(160,180,235,.32)"><rect x="10" y="12" width="10" height="8"/><rect x="20" y="6" width="10" height="10"/><rect x="30" y="12" width="26" height="8"/><rect x="56" y="8" width="10" height="10"/><rect x="20" y="18" width="10" height="6"/><rect x="56" y="18" width="10" height="6"/></g></svg></div>`;
+  const pxCloud = (cls, tile, rows, fill) => {
+    const rects = rows.map(([x,y,n]) => `<rect x="${x*tile}" y="${y*tile}" width="${n*tile}" height="${tile}"/>`).join('');
+    const w = Math.max(...rows.map(([x,_,n]) => x+n)) * tile;
+    const h = (Math.max(...rows.map(r => r[1])) + 2) * tile;
+    return `<div class="pixel-cloud ${cls}"><svg width="${w}" height="${h}" shape-rendering="crispEdges"><g fill="${fill}">${rects}</g></svg></div>`;
+  };
+  const cloud1 = pxCloud('c1', 8, [[4,0,7],[2,1,12],[1,2,15],[0,3,17],[1,4,15],[3,5,11]], 'rgba(214,226,255,.42)');
+  const cloud2 = pxCloud('c2', 8, [[6,0,8],[3,1,14],[1,2,18],[0,3,21],[2,4,17],[5,5,11]], 'rgba(186,204,240,.34)');
+  const cloud3 = pxCloud('c3', 7, [[3,0,6],[1,1,10],[0,2,13],[1,3,11],[3,4,7]], 'rgba(224,234,255,.38)');
   // 流星
   const meteors = [];
   for(let i=0;i<3;i++){
@@ -936,6 +1108,29 @@ function buildSky(){
   document.querySelectorAll('.meteor').forEach(m => m.classList.add('run'));
 }
 
+function budgetSum(list){
+  return list.filter(a => a.physical === '有').reduce((s,a) => s + (priceNum(a.price) === Infinity ? 0 : priceNum(a.price)), 0);
+}
+function yen(n){ return '¥' + (Math.round(n * 10) / 10); }
+function albumKey(a){ return String(a.no) + '|' + a.title; }
+let pricing = false;
+const picked = new Set();
+function pickedSum(){
+  return DATA.filter(a => picked.has(albumKey(a))).reduce((s,a) => {
+    const n = priceNum(a.price);
+    return s + (n === Infinity ? 0 : n);
+  }, 0);
+}
+function updateResultMeta(list){
+  const el = document.getElementById('resultMeta');
+  if(!el) return;
+  const filtered = !(state.month==='全部' && state.type==='全部' && !state.q);
+  const sum = budgetSum(list);
+  el.innerHTML = `显示 <b>${list.length}</b> 张 · 当前实体合计 <b>${yen(sum)}</b>` +
+    ` <button type="button" class="price-mode-btn${pricing?' on':''}" id="priceModeBtn">${pricing?'退出计价':'计价模式'}</button>` +
+    (pricing ? ` <span class="picked-meta">已选 <b>${picked.size}</b> 张 · 合计 <b>${yen(pickedSum())}</b></span> <button type="button" class="clear-filter" id="clearPicked">清空所选</button>` : '') +
+    (filtered ? ` <button class="clear-filter" id="clearFilter">清空筛选</button>` : '');
+}
 function updateStats(){
   const total = DATA.length;
   const phys = DATA.filter(a=>a.physical==='有').length;
@@ -949,11 +1144,35 @@ function updateStats(){
   document.getElementById('statPhys').textContent = phys + ' 张';
   document.getElementById('statCircle').textContent = circles + ' 个';
   document.getElementById('statMonth').textContent = peak.join('·');
+  document.getElementById('statBudget').textContent = yen(budgetSum(DATA));
 }
 
 // 流星开关
 document.getElementById('fxBtn').addEventListener('click', () => {
   document.body.classList.toggle('effects-off');
+});
+document.addEventListener('click', e => {
+  if(e.target.id === 'clearFilter' || e.target.closest('#clearFilter')){
+    state.q = ''; state.month = '全部'; state.type = '全部';
+    qEl.value = '';
+    pillRow(monthPills, ['全部',...months], '全部', v => { state.month = v; render(); });
+    pillRow(typePills, ['全部','实体','数字版'], '全部', v => { state.type = v; render(); });
+    render();
+  }
+  if(e.target.id === 'priceModeBtn' || e.target.closest('#priceModeBtn')){
+    pricing = !pricing;
+    document.body.classList.toggle('pricing-on', pricing);
+    if(!pricing){
+      picked.clear();
+      document.querySelectorAll('.album.picked').forEach(el => el.classList.remove('picked'));
+    }
+    updateResultMeta(sortData(DATA.filter(matches)));
+  }
+  if(e.target.id === 'clearPicked' || e.target.closest('#clearPicked')){
+    picked.clear();
+    document.querySelectorAll('.album.picked').forEach(el => el.classList.remove('picked'));
+    updateResultMeta(sortData(DATA.filter(matches)));
+  }
 });
 // 回到顶部
 const toTop = document.getElementById('toTop');
@@ -976,6 +1195,7 @@ function openModal(a){
     ? `<img src="${esc(a.img)}" alt="${esc(a.title)} 封面">`
     : '<div class="cover-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><small>无封面 · 待补充</small></div>';
   modal.querySelector('#modalCover').innerHTML = cover;
+  modal.querySelector('#modalKicker').textContent = `No.${a.no}  ·  ${a.month}  ·  ${isPhys ? '实体发行' : '数字发行'}`;
   modal.querySelector('#modalTitle').textContent = a.title;
   modal.querySelector('#modalCircle').textContent = a.circle;
   modal.querySelector('#modalChips').innerHTML = `
@@ -994,8 +1214,20 @@ function openModal(a){
 }
 function closeModal(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
 document.getElementById('grid').addEventListener('click', e => {
-  const box = e.target.closest('.cover-box');
-  if(box && box.dataset.album){ try { openModal(JSON.parse(box.dataset.album)); } catch(_){} }
+  if(e.target.closest('a')) return;
+  const card = e.target.closest('.album');
+  if(!card || !card.dataset.album) return;
+  try {
+    const a = JSON.parse(card.dataset.album);
+    if(pricing){
+      const k = albumKey(a);
+      if(picked.has(k)){ picked.delete(k); card.classList.remove('picked'); }
+      else { picked.add(k); card.classList.add('picked'); }
+      updateResultMeta(sortData(DATA.filter(matches)));
+      return;
+    }
+    openModal(a);
+  } catch(_){}
 });
 modal.addEventListener('click', e => { if(e.target.id === 'modal' || e.target.id === 'modalClose') closeModal(); });
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
@@ -1008,7 +1240,7 @@ function buildMonthNav(){
   months.forEach(m => counts[m] = 0);
   DATA.forEach(a => { if(counts[a.month] !== undefined) counts[a.month]++; });
   const present = months.filter(m => counts[m] > 0);
-  monthNav.innerHTML = present.map(m => `<span class="month-nav-item" data-m="${m}">${m}</span>`).join('');
+  monthNav.innerHTML = present.map(m => `<span class="month-nav-item" data-m="${m}">${m}<em>${counts[m]}部</em></span>`).join('');
   monthNav.querySelectorAll('.month-nav-item').forEach(el => {
     monthNavItems[el.dataset.m] = el;
     el.addEventListener('click', () => jumpToMonth(el.dataset.m));
