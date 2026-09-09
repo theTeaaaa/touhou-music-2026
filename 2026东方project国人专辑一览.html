@@ -405,6 +405,121 @@ body.pricing-on .album{cursor:pointer}
   content:"";position:absolute;left:6px;top:3px;width:7px;height:12px;border:2px solid #fff;border-top:0;border-left:0;transform:rotate(40deg)
 }
 
+
+.modal-cover{position:relative;background:#070b1c}
+.modal-cover-blur,.modal-cover-full{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block
+}
+.modal-cover-blur{
+  filter:blur(22px) saturate(1.08);transform:scale(1.12);
+  transition:opacity .4s ease
+}
+.modal-cover-full{opacity:0;z-index:1;transition:opacity .35s ease}
+.modal-cover.loaded .modal-cover-full{opacity:1}
+.modal-cover.loaded .modal-cover-blur,
+.modal-cover.loaded .modal-cover-progress{opacity:0;pointer-events:none}
+.modal-cover-progress{
+  position:absolute;left:50%;bottom:22px;transform:translateX(-50%);
+  z-index:2;width:min(230px,72%);display:flex;flex-direction:column;align-items:center;gap:8px
+}
+.modal-cover-progress .track{
+  width:100%;height:7px;border-radius:99px;overflow:hidden;
+  background:rgba(255,255,255,.16);border:1px solid rgba(246,196,100,.28)
+}
+.modal-cover-progress .fill{
+  height:100%;width:18%;border-radius:99px;
+  background:linear-gradient(90deg,var(--gold),var(--vermilion));
+  box-shadow:0 0 10px rgba(246,196,100,.45)
+}
+.modal-cover-progress .pct{
+  font-size:12px;letter-spacing:2px;color:#ffe08a;text-shadow:0 2px 8px rgba(0,0,0,.45)
+}
+.modal-cover.indet .fill{width:38%;animation:cover-indet 1.15s ease-in-out infinite}
+@keyframes cover-indet{
+  0%{transform:translateX(-120%)}
+  100%{transform:translateX(280%)}
+}
+@media (max-width:640px){
+  .toolbar{position:static}
+  body.pricing-on #resultMeta.toolbar-meta,
+  body.pricing-on .toolbar-meta{
+    position:fixed !important;left:0 !important;right:0 !important;top:0 !important;
+    z-index:55 !important;display:flex !important;flex-wrap:wrap !important;
+    width:100% !important;box-sizing:border-box;
+    margin:0 !important;padding:10px 58px 10px 16px !important;
+    background:rgba(8,14,36,.94) !important;backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 10px 28px rgba(0,0,0,.28)
+  }
+  body.pricing-on .toolbar::after{
+    content:"";display:block;height:58px
+  }
+  body.pricing-on .month-nav{z-index:40}
+}
+
+
+.price-dock{display:none}
+@media (max-width:640px){
+  body.pricing-on .price-dock[hidden]{display:flex !important}
+  body.pricing-on .price-dock{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+    position:fixed;left:0;right:0;top:0;z-index:70;
+    padding:10px 58px 10px 16px;
+    background:rgba(8,14,36,.94);backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 10px 28px rgba(0,0,0,.28);
+    font-size:12px;color:var(--muted);letter-spacing:.5px
+  }
+  body.pricing-on .price-dock b{color:var(--gold);font-family:var(--font-serif);font-size:14px}
+}
+
+
+.modal-overlay.open{padding:10px 64px;gap:0}
+.modal{
+  width:min(1680px, calc(100vw - 132px)) !important;
+  height:min(980px, 94vh) !important;
+  max-height:94vh !important;
+  max-width:none;
+}
+.modal-cover{
+  flex:1 1 64% !important;
+  width:auto !important;
+  min-width:0;
+  min-height:0 !important;
+  height:auto !important;
+  align-self:stretch;
+}
+.modal-cover img,
+.modal-cover-blur,
+.modal-cover-full{max-height:none !important;height:100%;width:100%;object-fit:contain}
+.modal-info{
+  flex:0 0 400px !important;
+  width:400px !important;
+  max-width:40%;
+  padding:28px 28px 24px !important;
+}
+.modal-nav{
+  position:fixed;top:50%;transform:translateY(-50%);z-index:110;
+  width:52px;height:52px;border-radius:50%;border:1px solid var(--line);
+  background:rgba(10,16,40,.78);color:#ffe08a;font-size:34px;line-height:1;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(10px);box-shadow:0 10px 28px rgba(0,0,0,.35)
+}
+.modal-overlay:not(.open) .modal-nav{display:none}
+.modal-nav:hover{background:var(--vermilion);color:#fff;border-color:transparent}
+.modal-nav.prev{left:14px}
+.modal-nav.next{right:14px}
+.modal-close{z-index:120 !important;background:rgba(8,13,34,.72)}
+@media (max-width:900px){
+  .modal-overlay.open{padding:8px 8px 16px}
+  .modal{width:96vw !important;height:auto !important;max-height:96vh !important;flex-direction:column}
+  .modal-cover{flex:none !important;width:100% !important;min-height:48vh !important;max-height:58vh}
+  .modal-info{flex:1 1 auto !important;width:auto !important;max-width:none;padding:18px 18px 22px !important}
+  .modal-nav{width:44px;height:44px;font-size:28px;top:26vh;transform:translateY(-50%)}
+  .modal-nav.prev{left:10px}
+  .modal-nav.next{right:10px}
+}
+
 </style>
 </head>
 <body class="effects-on">
@@ -510,6 +625,7 @@ body.pricing-on .album{cursor:pointer}
 </footer>
 
 <div id="modal" class="modal-overlay" aria-hidden="true">
+  <button type="button" class="modal-nav prev" id="modalPrev" aria-label="上一张">‹</button>
   <div class="modal">
     <button id="modalClose" class="modal-close" aria-label="关闭">×</button>
     <div class="modal-cover" id="modalCover"></div>
@@ -522,7 +638,9 @@ body.pricing-on .album{cursor:pointer}
       <div class="modal-links" id="modalLinks"></div>
     </div>
   </div>
+  <button type="button" class="modal-nav next" id="modalNext" aria-label="下一张">›</button>
 </div>
+<div id="priceDock" class="price-dock" hidden></div>
 <nav id="monthNav" class="month-nav" aria-label="月份导航"></nav>
 
 <script>
@@ -1126,10 +1244,17 @@ function updateResultMeta(list){
   if(!el) return;
   const filtered = !(state.month==='全部' && state.type==='全部' && !state.q);
   const sum = budgetSum(list);
-  el.innerHTML = `显示 <b>${list.length}</b> 张 · 当前实体合计 <b>${yen(sum)}</b>` +
+  const metaHTML = `显示 <b>${list.length}</b> 张 · 当前实体合计 <b>${yen(sum)}</b>` +
     ` <button type="button" class="price-mode-btn${pricing?' on':''}" id="priceModeBtn">${pricing?'退出计价':'计价模式'}</button>` +
     (pricing ? ` <span class="picked-meta">已选 <b>${picked.size}</b> 张 · 合计 <b>${yen(pickedSum())}</b></span> <button type="button" class="clear-filter" id="clearPicked">清空所选</button>` : '') +
     (filtered ? ` <button class="clear-filter" id="clearFilter">清空筛选</button>` : '');
+  el.innerHTML = metaHTML;
+  const dock = document.getElementById('priceDock');
+  if(dock){
+    dock.innerHTML = metaHTML;
+    dock.hidden = !pricing;
+    dock.querySelectorAll('#priceModeBtn,#clearPicked,#clearFilter').forEach(n => n.removeAttribute('id'));
+  }
 }
 function updateStats(){
   const total = DATA.length;
@@ -1159,7 +1284,7 @@ document.addEventListener('click', e => {
     pillRow(typePills, ['全部','实体','数字版'], '全部', v => { state.type = v; render(); });
     render();
   }
-  if(e.target.id === 'priceModeBtn' || e.target.closest('#priceModeBtn')){
+  if(e.target.closest('.price-mode-btn')){
     pricing = !pricing;
     document.body.classList.toggle('pricing-on', pricing);
     if(!pricing){
@@ -1168,7 +1293,7 @@ document.addEventListener('click', e => {
     }
     updateResultMeta(sortData(DATA.filter(matches)));
   }
-  if(e.target.id === 'clearPicked' || e.target.closest('#clearPicked')){
+  if(e.target.id === 'clearPicked' || e.target.closest('#clearPicked') || (e.target.closest('.clear-filter') && /清空所选/.test(e.target.textContent||''))){
     picked.clear();
     document.querySelectorAll('.album.picked').forEach(el => el.classList.remove('picked'));
     updateResultMeta(sortData(DATA.filter(matches)));
@@ -1187,14 +1312,68 @@ toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}
 
 // 封面弹窗
 const modal = document.getElementById('modal');
-function openModal(a){
+let coverXhr = null;
+let coverObjectUrl = null;
+function thumbOf(img){ return img ? ('covers/thumbs/' + img.split('/').pop()) : ''; }
+function loadModalCover(a){
+  const box = modal.querySelector('#modalCover');
+  if(coverXhr){ try{ coverXhr.abort(); }catch(_){} coverXhr = null; }
+  if(coverObjectUrl){ try{ URL.revokeObjectURL(coverObjectUrl); }catch(_){} coverObjectUrl = null; }
+  if(!a.img){
+    box.className = 'modal-cover loaded';
+    box.innerHTML = '<div class="cover-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><small>无封面 · 待补充</small></div>';
+    return;
+  }
+  const thumb = thumbOf(a.img);
+  box.className = 'modal-cover loading indet';
+  box.innerHTML = `
+    <img class="modal-cover-blur" src="${esc(thumb)}" alt="">
+    <img class="modal-cover-full" alt="${esc(a.title)} 封面">
+    <div class="modal-cover-progress">
+      <div class="track"><div class="fill" id="coverFill"></div></div>
+      <span class="pct" id="coverPct">加载中</span>
+    </div>`;
+  const fullImg = box.querySelector('.modal-cover-full');
+  const fill = box.querySelector('#coverFill');
+  const pct = box.querySelector('#coverPct');
+  const setP = n => {
+    const v = Math.max(0, Math.min(100, Math.round(n)));
+    fill.style.width = v + '%';
+    pct.textContent = v + '%';
+  };
+  const done = () => {
+    if(box.classList.contains('loaded')) return;
+    setP(100);
+    box.classList.add('loaded');
+    box.classList.remove('loading','indet');
+    if(coverXhr){ try{ coverXhr.abort(); }catch(_){} coverXhr = null; }
+  };
+  fullImg.onload = done;
+  fullImg.onerror = done;
+  fullImg.src = a.img;
+  try{
+    const xhr = new XMLHttpRequest();
+    coverXhr = xhr;
+    xhr.open('GET', a.img, true);
+    xhr.responseType = 'blob';
+    xhr.onprogress = e => {
+      if(box.classList.contains('loaded')) return;
+      if(e.lengthComputable && e.total > 0){
+        box.classList.remove('indet');
+        setP(e.loaded / e.total * 100);
+      }
+    };
+    xhr.onerror = () => {};
+    xhr.send();
+  } catch(_){}
+}
+let modalList = [];
+let modalIndex = 0;
+function fillModal(a){
   const isPhys = a.physical === '有';
   const bili = a.bili && a.bili !== '无';
   const dl = a.dl && a.dl !== '无';
-  const cover = a.img
-    ? `<img src="${esc(a.img)}" alt="${esc(a.title)} 封面">`
-    : '<div class="cover-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><small>无封面 · 待补充</small></div>';
-  modal.querySelector('#modalCover').innerHTML = cover;
+  loadModalCover(a);
   modal.querySelector('#modalKicker').textContent = `No.${a.no}  ·  ${a.month}  ·  ${isPhys ? '实体发行' : '数字发行'}`;
   modal.querySelector('#modalTitle').textContent = a.title;
   modal.querySelector('#modalCircle').textContent = a.circle;
@@ -1209,10 +1388,32 @@ function openModal(a){
   modal.querySelector('#modalLinks').innerHTML = `
     ${bili ? `<a class="alink bili" href="${esc(a.bili)}" target="_blank" rel="noopener">▶ XFD</a>` : '<span class="alink na">▶ 暂无XFD</span>'}
     ${dl ? `<a class="alink dl" href="${esc(a.dl)}" target="_blank" rel="noopener">♪ dizzylab</a>` : '<span class="alink na">♪ 暂无试听</span>'}`;
+  const info = modal.querySelector('.modal-info');
+  if (info) info.scrollTop = 0;
+}
+function openModal(a){
+  modalList = sortData(DATA.filter(matches));
+  modalIndex = modalList.findIndex(x => albumKey(x) === albumKey(a));
+  if(modalIndex < 0){
+    modalList = DATA.slice();
+    modalIndex = Math.max(0, DATA.findIndex(x => albumKey(x) === albumKey(a)));
+  }
+  fillModal(modalList[modalIndex]);
   modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 }
-function closeModal(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+function shiftModal(dir){
+  if(!modal.classList.contains('open') || !modalList.length) return;
+  modalIndex = (modalIndex + dir + modalList.length) % modalList.length;
+  fillModal(modalList[modalIndex]);
+}
+function closeModal(){
+  if(coverXhr){ try{ coverXhr.abort(); }catch(_){} coverXhr = null; }
+  if(coverObjectUrl){ try{ URL.revokeObjectURL(coverObjectUrl); }catch(_){} coverObjectUrl = null; }
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
 document.getElementById('grid').addEventListener('click', e => {
   if(e.target.closest('a')) return;
   const card = e.target.closest('.album');
@@ -1230,7 +1431,25 @@ document.getElementById('grid').addEventListener('click', e => {
   } catch(_){}
 });
 modal.addEventListener('click', e => { if(e.target.id === 'modal' || e.target.id === 'modalClose') closeModal(); });
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+document.getElementById('modalPrev').addEventListener('click', e => { e.stopPropagation(); shiftModal(-1); });
+document.getElementById('modalNext').addEventListener('click', e => { e.stopPropagation(); shiftModal(1); });
+document.addEventListener('keydown', e => {
+  if(!modal.classList.contains('open')) return;
+  if(e.key === 'Escape'){ e.preventDefault(); closeModal(); }
+  if(e.key === 'ArrowLeft'){ e.preventDefault(); shiftModal(-1); }
+  if(e.key === 'ArrowRight'){ e.preventDefault(); shiftModal(1); }
+});
+let swipeX = null;
+modal.addEventListener('touchstart', e => {
+  if(e.changedTouches && e.changedTouches[0]) swipeX = e.changedTouches[0].clientX;
+}, {passive:true});
+modal.addEventListener('touchend', e => {
+  if(swipeX == null || !e.changedTouches || !e.changedTouches[0]) return;
+  const dx = e.changedTouches[0].clientX - swipeX;
+  swipeX = null;
+  if(Math.abs(dx) < 56) return;
+  shiftModal(dx > 0 ? -1 : 1);
+}, {passive:true});
 
 // 左侧月份定位条
 const monthNav = document.getElementById('monthNav');
