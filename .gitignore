@@ -7,3 +7,9 @@ make_thumbs.py
 
 # 封面缩略图工具（本地维护用，不推送）
 make_thumbs.py
+
+# 表格：只保留最新一版，历史版本留在本地
+表格/*_0826.xlsx
+
+# 信息图生成脚本：本地维护用，不推送到公开站点
+make_infographic.cjs

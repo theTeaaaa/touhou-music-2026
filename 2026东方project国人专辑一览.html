@@ -330,6 +330,8 @@ body:not(.light) .icon-sun{display:none}
 }
 .album:hover{transform:translateY(-7px);box-shadow:0 22px 54px rgba(0,0,0,.38),0 0 0 1px rgba(246,196,100,.28)}
 .month-split,.empty{grid-column:1 / -1;flex:unset;scroll-margin-top:96px}
+.month-group{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:28px;justify-content:center;margin-top:6px}
+.month-group .album{flex:0 1 300px;max-width:340px}
 .album-no,.album-flag{
   position:absolute;z-index:2;top:12px;padding:4px 10px;border-radius:999px;
   font-size:11px;letter-spacing:1px;color:#fff;backdrop-filter:blur(8px)
@@ -1217,7 +1219,7 @@ function render(){
     months.forEach(m => {
       if(!groups[m].length) return;
       html += `<div class="month-split"><b>${m}</b><span>${groups[m].length} 张专辑</span></div>`;
-      html += groups[m].map(cardHTML).join('');
+      html += `<div class="month-group">${groups[m].map(cardHTML).join('')}</div>`;
     });
     grid.innerHTML = html;
   } else {
