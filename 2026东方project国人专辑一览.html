@@ -547,7 +547,7 @@ body.pricing-on .album{cursor:pointer}
     <div class="hero-kicker hero-anim d1">東方project · 国人同人音乐</div>
     <h1 class="hero-anim d2">2026 东方project<br><span class="hero-accent">国人专辑一览</span><small>— CHINESE DOUJIN ALBUM ARCHIVE —</small></h1>
     <div class="hero-divider hero-anim d3"></div>
-    <p class="hero-sub hero-anim d4">今年新作 · 共<span class="count" id="albumCount">35</span>部 · 敬请欣赏</p>
+    <p class="hero-sub hero-anim d4">今年新作 · 共<span class="count" id="albumCount">37</span>部 · 敬请欣赏</p>
     <div class="hero-actions hero-anim d5">
       <a class="hero-cta" href="#albums">开始浏览</a>
       <a class="hero-cta ghost" href="#note">作者的话</a>
@@ -559,9 +559,9 @@ body.pricing-on .album{cursor:pointer}
 <section class="bridge">
   <div class="bridge-inner">
     <div class="bridge-stats reveal-base">
-      <div class="stat"><b id="statTotal">35 张</b><span>收录专辑</span></div>
-      <div class="stat"><b id="statPhys">30 张</b><span>实体发行</span></div>
-      <div class="stat"><b id="statCircle">27 个</b><span>社团 / 个人</span></div>
+      <div class="stat"><b id="statTotal">37 张</b><span>收录专辑</span></div>
+      <div class="stat"><b id="statPhys">32 张</b><span>实体发行</span></div>
+      <div class="stat"><b id="statCircle">29 个</b><span>社团 / 个人</span></div>
       <div class="stat"><b id="statMonth">7 月</b><span>发布高峰</span></div>
       <div class="stat"><b id="statBudget">—</b><span>实体合计</span></div>
     </div>
@@ -596,7 +596,7 @@ body.pricing-on .album{cursor:pointer}
         </div>
       </div>
     </div>
-    <div class="toolbar-meta" id="resultMeta">显示 <b>35</b> 张</div>
+    <div class="toolbar-meta" id="resultMeta">显示 <b>37</b> 张</div>
   </div>
 </div>
 
@@ -1171,6 +1171,36 @@ const DATA = [
   "price": "78",
   "review": "由THE FACTOTY OF SHEEP社团所带来的今年第三张专辑，依旧是很夸张大胆的专辑封面设计，视觉效果相当震撼，本专辑7首曲目都改自亡失的情感，可以说就是一张以秦心为主题的专辑，且风格从传统乐器、复古电子乐到前卫都有所触及，是很能体现出作者功底的一部良作。",
   "img": "covers/TFOS-SP02.jpg"
+ },
+ {
+  "no": "36",
+  "title": "Encapsulation 繁夜封装",
+  "circle": "墨斯卡林之翼",
+  "songs": "1",
+  "tracks": "1",
+  "month": "10月",
+  "bili": "https://www.bilibili.com/video/BV1Pqh26pEqw",
+  "dl": "https://www.dizzylab.net/d/MSCL-2026/",
+  "physical": "随刊",
+  "sale": "10月",
+  "price": "19",
+  "review": "首先要讲的是19元是dizzylab的标价，而本张专辑为墨斯卡林之翼新画册的随刊赠送碟，大家有机会可以支持一下70r的超值大套装。回归正题，这次也是难得的能看到有社团请到BSO来录制交响，日恩老师整体改编水平与BSO演奏水平都是相当强劲且专业的，且混音请到了鸦雀有声老师，所以不论是从前到后，以及慕尼老师的设计等等这诸多方面而言，可以说是发挥出了1+1远远大于2的效果，是一张成本超高且极为优质的交响单曲专。",
+  "img": "covers/MSCL-2026.jpg"
+ },
+ {
+  "no": "37",
+  "title": "鸬鹚穴帽子游记 ~ Anansi in Usher's house",
+  "circle": "Occult Iris - 夜鸢谭",
+  "songs": "14",
+  "tracks": "14",
+  "month": "10月",
+  "bili": "https://www.bilibili.com/video/BV1YdHr6aEyo",
+  "dl": "无",
+  "physical": "有",
+  "sale": "10月",
+  "price": "45",
+  "review": "作为新进的社团，夜鸢谭一上来就添上了很厉害的一笔，现代交响在国人社团中确实不为多见，本张专辑的乐器使用方面还是颇为大胆的，且将交响与一些爵士写法技法加以融合，风格和乐器丰富度相当高切具一定的多变性，听感很好，在b站评论区有提供下载链接和全专试听，还是推荐大家试上一试的。",
+  "img": "covers/Anansi.png"
  }
 ];
 
@@ -1202,7 +1232,7 @@ const monthNum = m => ({'1月':1,'2月':2,'4月':4,'5月':5,'7月':7,'8月':8,'9
 function matches(a){
   if(state.month !== '全部' && a.month !== state.month) return false;
   if(state.type !== '全部'){
-    const isPhys = a.physical === '有';
+    const isPhys = a.physical !== '无';
     if(state.type === '实体' && !isPhys) return false;
     if(state.type === '数字版' && isPhys) return false;
   }
@@ -1223,7 +1253,8 @@ function sortData(list){
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function cardHTML(a){
-  const isPhys = a.physical === '有';
+  const isPhys = a.physical !== '无';
+  const physTag = a.physical === '有' ? '实体' : (isPhys ? a.physical : '数字');
   const bili = a.bili && a.bili !== '无';
   const dl = a.dl && a.dl !== '无';
   const thumbSrc = a.img ? ('covers/thumbs/' + a.img.split('/').pop()) : '';
@@ -1231,7 +1262,7 @@ function cardHTML(a){
     ? `<img src="${esc(thumbSrc)}" alt="${esc(a.title)} 封面" loading="lazy">`
     : `<div class="cover-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><small>无封面 · 待补充</small></div>`;
   return `<article class="album" data-album="${esc(JSON.stringify(a))}">
-    <div class="cover-box">${cover}<span class="album-flag ${isPhys?'phys':'digi'}">${isPhys?'实体':'数字'}</span><span class="pick-mark" aria-hidden="true"></span><span class="cover-hint">查看详情</span></div>
+    <div class="cover-box">${cover}<span class="album-flag ${isPhys?'phys':'digi'}">${esc(physTag)}</span><span class="pick-mark" aria-hidden="true"></span><span class="cover-hint">查看详情</span></div>
     <div class="album-body">
       <div class="album-title">${esc(a.title)}</div>
       <span class="album-circle">${esc(a.circle)}</span>
@@ -1349,6 +1380,7 @@ function buildSky(){
 }
 
 function budgetSum(list){
+  // 只累计标准实体（「有」）的价格：「随刊」等特殊形式没有独立售价，不计入实体合计
   return list.filter(a => a.physical === '有').reduce((s,a) => s + (priceNum(a.price) === Infinity ? 0 : priceNum(a.price)), 0);
 }
 function yen(n){ return '¥' + (Math.round(n * 10) / 10); }
@@ -1380,7 +1412,7 @@ function updateResultMeta(list){
 }
 function updateStats(){
   const total = DATA.length;
-  const phys = DATA.filter(a=>a.physical==='有').length;
+  const phys = DATA.filter(a=>a.physical!=='无').length;
   const circles = new Set(DATA.map(a=>a.circle)).size;
   const counts = {};
   months.forEach(m=>counts[m]=0);
@@ -1492,17 +1524,18 @@ function loadModalCover(a){
 let modalList = [];
 let modalIndex = 0;
 function fillModal(a){
-  const isPhys = a.physical === '有';
+  const isPhys = a.physical !== '无';
+  const physText = a.physical === '有' ? '实体发行' : (isPhys ? a.physical : '数字发行');
   const bili = a.bili && a.bili !== '无';
   const dl = a.dl && a.dl !== '无';
   loadModalCover(a);
-  modal.querySelector('#modalKicker').textContent = `No.${a.no}  ·  ${a.month}  ·  ${isPhys ? '实体发行' : '数字发行'}`;
+  modal.querySelector('#modalKicker').textContent = `No.${a.no}  ·  ${a.month}  ·  ${physText}`;
   modal.querySelector('#modalTitle').textContent = a.title;
   modal.querySelector('#modalCircle').textContent = a.circle;
   modal.querySelector('#modalChips').innerHTML = `
     <span class="chip"><span class="chip-label">发布</span><span class="chip-val">${esc(a.month)}</span></span>
     <span class="chip"><span class="chip-label">价格</span><span class="chip-val">${esc(priceLabel(a.price))}</span></span>
-    <span class="chip"><span class="chip-label">实体</span><span class="chip-val">${isPhys?'有':'无'}</span></span>
+    <span class="chip"><span class="chip-label">实体</span><span class="chip-val">${esc(a.physical)}</span></span>
     <span class="chip"><span class="chip-label">歌曲</span><span class="chip-val">${esc(a.songs)} 首</span></span>
     <span class="chip"><span class="chip-label">音轨</span><span class="chip-val">${esc(a.tracks)} 首</span></span>
     <span class="chip"><span class="chip-label">实体发售</span><span class="chip-val">${esc(a.sale || a.month)}</span></span>`;
